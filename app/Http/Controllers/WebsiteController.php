@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use \App\Models\ContactUs;
+use \App\Models\GovernorMessage;
+use \App\Models\NewAndEvent;
+use App\Models\GlobalImpact;
+use App\Models\KeyInitiative;
+use App\Models\NewsLetter;
+use App\Models\Slider;
+use App\Models\Secretary;
+use App\Models\Governor;
+use Illuminate\Http\Request;
+
+class WebsiteController extends Controller
+{
+    //
+    public function index()
+    {
+        $sliders = Slider::where('active', true)->orderBy('order', 'asc')->take(4)->get();
+        $impacts = GlobalImpact::where('active', true)->orderBy('order', 'asc')->take(4)->get();
+        $initiatives = KeyInitiative::where('active', true)->orderBy('order', 'asc')->take(6)->get();
+        $governorMessage = GovernorMessage::where('active', true)->first();
+        $newsAndEvents = NewAndEvent::orderBy('date', 'desc')->take(4)->get();
+        $newsLetters = NewsLetter::where('status', 'active')->orderBy('date', 'desc')->take(4)->get();
+        return view('website.index', get_defined_vars());
+    }
+
+    public function newsLetterDetail($slug)
+    {
+        $newsletter = NewsLetter::where('slug', $slug)->firstOrFail();
+        return view('website.news-letter-detail', get_defined_vars());
+    }
+
+    public function formerGovernor()
+    {
+        $governors = Governor::orderBy('to', 'desc')->get();
+        return view('website.former-governor', get_defined_vars());
+    }
+
+    public function formerSecretory()
+    {
+        $secretaries = Secretary::orderBy('to', 'desc')->get();
+        return view('website.former-secretory', get_defined_vars());
+    }
+
+    public function news()
+    {
+        $newsAndEvents = NewAndEvent::orderBy('date', 'desc')->paginate(9);
+        return view('website.news', get_defined_vars());
+    }
+
+    public function newsDetail($slug)
+    {
+        $news = NewAndEvent::where('slug', $slug)->firstOrFail();
+        $relatedNews = NewAndEvent::where('id', '!=', $news->id)->orderBy('date', 'desc')->take(3)->get();
+        return view('website.news-detail', get_defined_vars());
+    }
+
+    public function contact()
+    {
+        return view('website.contact');
+    }
+
+    public function contactStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'description' => 'required',
+        ]);
+
+        ContactUs::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'description' => $request->description,
+        ]);
+        return redirect()->back()->with('success', 'Your message has been sent successfully.');
+    }
+}
