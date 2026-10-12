@@ -45,7 +45,7 @@
                 <div class="col-lg-5 col-md-6 mb-5 mb-md-0">
                     <div class="director-image-container">
                         <div class="director-yellow-bg"></div>
-                        <img class="director-img" src="{{ asset($governorMessage->image) }}" alt="{{ $governorMessage->name }}">
+                        <img class="director-img" src="{{ asset($governorMessage?->image) }}" alt="{{ $governorMessage->name }}">
                         <div class="director-circle-decor"></div>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ class PermissionSeed extends Seeder
             'user' => 'User',
             'slider' => 'Slider',
             'contact' => 'Contact',
+            'visitor' => 'Visitor',
         ];
 
         $actions = [

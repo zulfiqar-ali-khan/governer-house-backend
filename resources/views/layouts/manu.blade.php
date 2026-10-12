@@ -17,9 +17,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('index') }}">HOME</a>
                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('former-governor') }}">Governors</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarGovernors" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Governors
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarGovernors">
+                            <li><a class="dropdown-item" href="{{ route('former-governor') }}">Former Governors</a></li>
+                            <li><a class="dropdown-item" href="{{ route('visitors') }}">Visitors</a></li>
+                            <li><a class="dropdown-item" href="{{ route('history') }}">History</a></li>
+                        </ul>
                     </li>
+                     {{-- <li class="nav-item">
+                        <a class="nav-link" href="{{ route('former-governor') }}">Governors</a>
+                    </li> --}}
                      <li class="nav-item">
                         <a class="nav-link" href="{{ route('former-secretory') }}">Secretaries</a>
                     </li>

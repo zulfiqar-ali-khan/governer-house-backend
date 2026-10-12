@@ -35,7 +35,7 @@
                                 <th>#</th>
                                 <th>Image</th>
                                 <th>Name</th>
-                                <th>Position</th>
+                                {{-- <th>Position</th> --}}
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Action</th>
@@ -46,16 +46,20 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="{{ asset($item->image) }}" alt="Image" height="50">
+                                        @if($item->image)
+                                            <img src="{{ asset($item->image) }}" alt="Image" height="50">
+                                        @else
+                                            <span class="badge bg-secondary">No Image</span>
+                                        @endif
                                     </td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->position }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($item->from)->format('d M, Y') }}</td>
+                                    {{-- <td>{{ $item->position ?? '-' }}</td> --}}
+                                    <td>{{ \Carbon\Carbon::parse($item->from)->format('Y') }}</td>
                                     <td>
                                         @if($item->is_present)
                                             <span class="badge bg-success">Present</span>
                                         @else
-                                            {{ $item->to ? \Carbon\Carbon::parse($item->to)->format('d M, Y') : '-' }}
+                                            {{ $item->to ? \Carbon\Carbon::parse($item->to)->format('Y') : '-' }}
                                         @endif
                                     </td>
                                     <td>
@@ -107,8 +111,8 @@
                                                             <input type="text" class="form-control" name="name" value="{{ $item->name }}" required>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label">Position <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" name="position" value="{{ $item->position }}" required>
+                                                            <label class="form-label">Position</label>
+                                                            <input type="text" class="form-control" name="position" value="{{ $item->position }}">
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -130,8 +134,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Description <span class="text-danger">*</span></label>
-                                                        <textarea class="form-control" name="description" rows="4" required>{{ $item->description }}</textarea>
+                                                        <label class="form-label">Description</label>
+                                                        <textarea class="form-control" name="description" rows="4">{{ $item->description }}</textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Image</label>
@@ -172,8 +176,8 @@
                                 <input type="text" class="form-control" name="name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Position <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="position" required>
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control" name="position">
                             </div>
                         </div>
                         <div class="row">
@@ -195,12 +199,12 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control" name="description" rows="4" required></textarea>
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="description" rows="4"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Image <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control" name="image" accept="image/*" required>
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control" name="image" accept="image/*">
                         </div>
                     </div>
                     <div class="modal-footer">

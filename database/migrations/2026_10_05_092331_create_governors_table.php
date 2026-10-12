@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('governors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('position');
-            $table->string('description');
-            $table->string('image');
+            $table->string('position')->nullable();
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->date('from');
             $table->date('to');
             $table->timestamps();

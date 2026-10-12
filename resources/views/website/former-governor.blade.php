@@ -17,15 +17,23 @@
 
             <div class="row g-4">
                 @foreach($governors as $governor)
+                @if($governor->is_present == 0)
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="former-gov-card text-center">
-                        <img src="{{ asset($governor->image) }}" alt="{{ $governor->name }}" class="former-gov-img">
+                        @if($governor->image)
+                            <img src="{{ asset($governor->image) }}" alt="{{ $governor->name }}" class="former-gov-img">
+                        @else
+                            <div class="former-gov-img d-inline-flex align-items-center justify-content-center bg-light text-muted border mx-auto">
+                                <i class="fas fa-user-tie fa-3x"></i>
+                            </div>
+                        @endif
                         <h4 class="former-gov-name">{{ $governor->name }}</h4>
                         <p class="former-gov-years">
-                            {{ $governor->from }} - {{ $governor->is_present ? 'Present' : $governor->to }}
+                            {{ \Carbon\Carbon::parse($governor->from)->format('Y') }} - {{ $governor->is_present ? 'Present' : ($governor->to ? \Carbon\Carbon::parse($governor->to)->format('Y') : '') }}
                         </p>
                     </div>
                 </div>
+                @endif
                 @endforeach
             </div>
         </div>

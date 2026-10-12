@@ -27,7 +27,7 @@
                         @endcan
                     </div>
 
-                    <table id="datatable" class="table table-bordered table-condensed table-custom dt-responsive nowrap w-100">
+                    <table id="datatable" class="table table-bordered table-condensed table-custom  w-100">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -48,13 +48,13 @@
                                     </td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->slug }}</td>
-                                    <td>{{ $item->date }}</td>
+                                    <td width="100">{{ $item->date }}</td>
                                     <td>
                                         <span class="badge {{ $item->status == 'active' ? 'bg-success' : 'bg-danger' }}">
                                             {{ ucfirst($item->status) }}
                                         </span>
                                     </td>
-                                    <td>
+                                    <td width="150">
                                         @can('newsletter-edit')
                                         <button class="btn btn-primary btn-sm waves-effect waves-light" data-bs-toggle="modal"
                                             data-bs-target="#editModal{{ $item->id }}">

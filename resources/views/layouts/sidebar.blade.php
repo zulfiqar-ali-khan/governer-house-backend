@@ -118,6 +118,14 @@
                     </a>
                 </li>
                 @endcan
+                @can('visitor-list')
+                <li>
+                    <a href="{{ route('visitors.index') }}" class="waves-effect">
+                        <i class="bx bx-group"></i>
+                        <span key="t-visitors-list">Visitors List</span>
+                    </a>
+                </li>
+                @endcan
             </ul>
         </div>
         <!-- Sidebar -->

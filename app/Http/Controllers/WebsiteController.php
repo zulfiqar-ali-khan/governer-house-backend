@@ -11,6 +11,7 @@ use App\Models\NewsLetter;
 use App\Models\Slider;
 use App\Models\Secretary;
 use App\Models\Governor;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -43,6 +44,17 @@ class WebsiteController extends Controller
     {
         $secretaries = Secretary::orderBy('to', 'desc')->get();
         return view('website.former-secretory', get_defined_vars());
+    }
+
+    public function visitors()
+    {
+        $visitors = Visitor::orderBy('date', 'desc')->get();
+        return view('website.governor-house-visiror', get_defined_vars());
+    }
+
+    public function history()
+    {
+        return view('website.history');
     }
 
     public function news()

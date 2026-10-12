@@ -37,9 +37,9 @@ class GovernorController extends Controller implements HasMiddleware
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'position' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'from' => 'required|date',
             'to' => 'nullable|date',
         ]);
@@ -66,8 +66,8 @@ class GovernorController extends Controller implements HasMiddleware
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'description' => 'required|string',
+            'position' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'from' => 'required|date',
             'to' => 'nullable|date',

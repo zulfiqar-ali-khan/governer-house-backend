@@ -1350,10 +1350,10 @@ footer {
     font-weight: 500;
 }
 .news-detail-content p {
-    font-size: 16px;
-    color: #495057;
-    line-height: 1.8;
-    margin-bottom: 25px;
+    font-size: 16px !important;
+    color: #495057 !important;
+    line-height: 1.8 !important;
+    margin-bottom: 0px !important;
 }
 .news-detail-subtitle {
     font-size: 24px;

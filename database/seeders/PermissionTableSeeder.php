@@ -23,7 +23,9 @@ class PermissionTableSeeder extends Seeder
             'contact-us-list', 'contact-us-delete',
             'new-and-event-list', 'new-and-event-create', 'new-and-event-edit', 'new-and-event-delete',
             'governor-list', 'governor-create', 'governor-edit', 'governor-delete',
-            'secretary-list', 'secretary-create', 'secretary-edit', 'secretary-delete'
+            'secretary-list', 'secretary-create', 'secretary-edit', 'secretary-delete',
+            'newsletter-list', 'newsletter-create', 'newsletter-edit', 'newsletter-delete',
+            'visitor-list', 'visitor-create', 'visitor-edit', 'visitor-delete'
         ];
 
         foreach ($permissions as $permission) {
