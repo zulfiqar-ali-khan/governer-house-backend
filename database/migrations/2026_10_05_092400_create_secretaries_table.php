@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('secretaries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('position');
-            $table->string('description');
-            $table->string('image');
-            $table->date('from');
-            $table->date('to');
+            $table->string('position')->nullable();
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('intercom')->nullable();
+            $table->date('from')->nullable();
+            $table->date('to')->nullable();
+            $table->enum('type', ['Military', 'Principle','Officer']);
             $table->timestamps();
         });
     }

@@ -36,6 +36,8 @@
                                 <th>Image</th>
                                 <th>Name</th>
                                 <th>Position</th>
+                                <th>Type</th>
+                                <th>Phone</th>
                                 <th>From</th>
                                 <th>To</th>
                                 <th>Action</th>
@@ -46,11 +48,27 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="{{ asset($item->image) }}" alt="Image" height="50">
+                                        @if($item->image)
+                                            <img src="{{ asset($item->image) }}" alt="Image" height="50">
+                                        @else
+                                            <span class="badge bg-secondary">No Image</span>
+                                        @endif
                                     </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->position }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($item->from)->format('d M, Y') }}</td>
+                                    <td>
+                                        @if($item->type == 'Military')
+                                            <span class="badge bg-primary">Military</span>
+                                        @elseif($item->type == 'Principle')
+                                            <span class="badge bg-info">Principle</span>
+                                        @elseif($item->type == 'Officer')
+                                            <span class="badge bg-warning">Officer</span>
+                                        @else
+                                            <span class="badge bg-secondary">{{ $item->type }}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->phone ?? '-' }}</td>
+                                    <td>{{ $item->from ? \Carbon\Carbon::parse($item->from)->format('d M, Y') : '-' }}</td>
                                     <td>
                                         @if($item->is_present)
                                             <span class="badge bg-success">Present</span>
@@ -102,23 +120,46 @@
                                                 @method('PUT')
                                                 <div class="modal-body">
                                                     <div class="row">
-                                                        <div class="col-md-6 mb-3">
+                                                        <div class="col-md-4 mb-3">
                                                             <label class="form-label">Name <span class="text-danger">*</span></label>
                                                             <input type="text" class="form-control" name="name" value="{{ $item->name }}" required>
                                                         </div>
-                                                        <div class="col-md-6 mb-3">
-                                                            <label class="form-label">Position <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" name="position" value="{{ $item->position }}" required>
+                                                        <div class="col-md-4 mb-3">
+                                                            <label class="form-label">Position</label>
+                                                            <input type="text" class="form-control" name="position" value="{{ $item->position }}">
+                                                        </div>
+                                                        <div class="col-md-4 mb-3">
+                                                            <label class="form-label">Type <span class="text-danger">*</span></label>
+                                                            <select class="form-select" name="type" required>
+                                                                <option value="" disabled>Select Type</option>
+                                                                <option value="Military" {{ $item->type == 'Military' ? 'selected' : '' }}>Military</option>
+                                                                <option value="Principle" {{ $item->type == 'Principle' ? 'selected' : '' }}>Principle</option>
+                                                                <option value="Officer" {{ $item->type == 'Officer' ? 'selected' : '' }}>Officer</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4 mb-3">
+                                                            <label class="form-label">Phone</label>
+                                                            <input type="text" class="form-control" name="phone" value="{{ $item->phone }}">
+                                                        </div>
+                                                        <div class="col-md-4 mb-3">
+                                                            <label class="form-label">Fax</label>
+                                                            <input type="text" class="form-control" name="fax" value="{{ $item->fax }}">
+                                                        </div>
+                                                        <div class="col-md-4 mb-3">
+                                                            <label class="form-label">Intercom</label>
+                                                            <input type="text" class="form-control" name="intercom" value="{{ $item->intercom }}">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-5 mb-3">
-                                                            <label class="form-label">From Date <span class="text-danger">*</span></label>
-                                                            <input type="date" class="form-control" name="from" value="{{ $item->from }}" required>
+                                                            <label class="form-label">From Date</label>
+                                                            <input type="date" class="form-control" name="from" value="{{ $item->from }}">
                                                         </div>
                                                         <div class="col-md-5 mb-3">
                                                             <label class="form-label">To Date</label>
-                                                            <input type="date" class="form-control" name="to" id="editToDate{{ $item->id }}" value="{{ $item->to }}" {{ $item->is_present ? 'disabled' : 'required' }}>
+                                                            <input type="date" class="form-control" name="to" id="editToDate{{ $item->id }}" value="{{ $item->to }}" {{ $item->is_present ? 'disabled' : '' }}>
                                                         </div>
                                                         <div class="col-md-2 mb-3 d-flex align-items-end">
                                                             <div class="form-check mb-2">
@@ -130,8 +171,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Description <span class="text-danger">*</span></label>
-                                                        <textarea class="form-control" name="description" rows="4" required>{{ $item->description }}</textarea>
+                                                        <label class="form-label">Description</label>
+                                                        <textarea class="form-control" name="description" rows="4">{{ $item->description }}</textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Image</label>
@@ -167,23 +208,46 @@
                     @csrf
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label">Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="name" required>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Position <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="position" required>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control" name="position">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Type <span class="text-danger">*</span></label>
+                                <select class="form-select" name="type" required>
+                                    <option value="" selected disabled>Select Type</option>
+                                    <option value="Military">Military</option>
+                                    <option value="Principle">Principle</option>
+                                    <option value="Officer">Officer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" name="phone">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Fax</label>
+                                <input type="text" class="form-control" name="fax">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Intercom</label>
+                                <input type="text" class="form-control" name="intercom">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5 mb-3">
-                                <label class="form-label">From Date <span class="text-danger">*</span></label>
-                                <input type="date" class="form-control" name="from" required>
+                                <label class="form-label">From Date</label>
+                                <input type="date" class="form-control" name="from">
                             </div>
                             <div class="col-md-5 mb-3">
                                 <label class="form-label">To Date</label>
-                                <input type="date" class="form-control" name="to" id="createToDate" required>
+                                <input type="date" class="form-control" name="to" id="createToDate">
                             </div>
                             <div class="col-md-2 mb-3 d-flex align-items-end">
                                 <div class="form-check mb-2">
@@ -195,12 +259,12 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control" name="description" rows="4" required></textarea>
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="description" rows="4"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Image <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control" name="image" accept="image/*" required>
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control" name="image" accept="image/*">
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -28,14 +28,18 @@
                             <li><a class="dropdown-item" href="{{ route('history') }}">History</a></li>
                         </ul>
                     </li>
-                     {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ route('former-governor') }}">Governors</a>
-                    </li> --}}
-                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('former-secretory') }}">Secretaries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT US</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarAboutUs" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            ABOUT US
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarAboutUs">
+                            <li><a class="dropdown-item" href="{{ route('organogram') }}">Organogram</a></li>
+                            <li><a class="dropdown-item" href="{{ route('former-secretory') }}">Prinicipal Secretaries</a></li>
+                            <li><a class="dropdown-item" href="{{ route('military-secretary') }}">Military Secretaries</a></li>
+                            <li><a class="dropdown-item" href="{{ route('officers') }}">Officers</a></li>
+                        </ul>
                     </li>
                    
                     <li class="nav-item">

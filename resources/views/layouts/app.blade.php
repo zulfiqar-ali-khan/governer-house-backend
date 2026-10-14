@@ -8,31 +8,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Dashboard | GOVERNOR HOUSE" name="description" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     <!-- Bootstrap Css -->
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
     <!-- App js -->
-    <script src="{{asset('assets/js/plugin.js')}}"></script>
+    <script src="{{ asset('assets/js/plugin.js') }}"></script>
 
     <!-- DataTables -->
-    <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet"
+    <link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
-    <link href="{{asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet"
+    <link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
-    <link href="{{asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
+        rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/toastr/build/toastr.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/toastr/build/toastr.min.css') }}">
     <!-- Sweet Alert-->
-    <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     @yield('css')
+
+    <style>
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            filter: brightness(0) invert(1);
+        }
+
+        .site-title {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            color: #ffffff;
+        }
+
+        .site-title span:first-child {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--yellow);
+            letter-spacing: 1.5px;
+        }
+
+        .site-title span:last-child {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+
+        }
+    </style>
 
 </head>
 
@@ -49,23 +83,20 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="{{asset('assets/images/logo.svg')}}" alt="" height="22">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="17">
-                            </span>
+                        <a class="navbar-brand" href="/">
+                            <div class="logo-sm">
+                                  <img src="{{ asset('front_assets/imgs/logo.png') }}" width="50" alt="">
+                            </div>
+                            <div class="logo-lg">
+                                <img src="{{ asset('front_assets/imgs/logo.png') }}" width="50" alt="">
+                                <div class="site-title">
+                                    <span>Governor House</span>
+                                    <span>Khyber Pakhtunkhwa</span>
+                                </div>
+                            </div>
+
                         </a>
 
-                        <a href="index.html" class="logo logo-light">
-                            <span class="logo-sm">
-                                <img src="{{asset('assets/images/logo-light.svg')}}" alt="" height="22">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="19">
-                            </span>
-                        </a>
                     </div>
 
                     <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect"
@@ -93,19 +124,20 @@
                                 <div class="row g-0">
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{asset('assets/images/brands/github.png')}}" alt="Github">
+                                            <img src="{{ asset('assets/images/brands/github.png') }}" alt="Github">
                                             <span>GitHub</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{asset('assets/images/brands/bitbucket.png')}}" alt="bitbucket">
+                                            <img src="{{ asset('assets/images/brands/bitbucket.png') }}"
+                                                alt="bitbucket">
                                             <span>Bitbucket</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{asset('assets/images/brands/dribbble.png')}}" alt="dribbble">
+                                            <img src="{{ asset('assets/images/brands/dribbble.png') }}" alt="dribbble">
                                             <span>Dribbble</span>
                                         </a>
                                     </div>
@@ -114,19 +146,20 @@
                                 <div class="row g-0">
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{asset('assets/images/brands/dropbox.png')}}" alt="dropbox">
+                                            <img src="{{ asset('assets/images/brands/dropbox.png') }}" alt="dropbox">
                                             <span>Dropbox</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{asset('assets/images/brands/mail_chimp.png')}}" alt="mail_chimp">
+                                            <img src="{{ asset('assets/images/brands/mail_chimp.png') }}"
+                                                alt="mail_chimp">
                                             <span>Mail Chimp</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="dropdown-icon-item" href="#">
-                                            <img src="{{asset('assets/images/brands/slack.png')}}" alt="slack">
+                                            <img src="{{ asset('assets/images/brands/slack.png') }}" alt="slack">
                                             <span>Slack</span>
                                         </a>
                                     </div>
@@ -182,12 +215,13 @@
                                 </a>
                                 <a href="javascript: void(0);" class="text-reset notification-item">
                                     <div class="d-flex">
-                                        <img src="{{asset('assets/images/users/avatar-3.jpg')}}"
+                                        <img src="{{ asset('assets/images/users/avatar-3.jpg') }}"
                                             class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                         <div class="flex-grow-1">
                                             <h6 class="mb-1">James Lemire</h6>
                                             <div class="font-size-12 text-muted">
-                                                <p class="mb-1" key="t-simplified">It will seem like simplified English.
+                                                <p class="mb-1" key="t-simplified">It will seem like simplified
+                                                    English.
                                                 </p>
                                                 <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span
                                                         key="t-hours-ago">1 hours ago</span></p>
@@ -216,12 +250,13 @@
 
                                 <a href="javascript: void(0);" class="text-reset notification-item">
                                     <div class="d-flex">
-                                        <img src="{{asset('assets/images/users/avatar-4.jpg')}}"
+                                        <img src="{{ asset('assets/images/users/avatar-4.jpg') }}"
                                             class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                         <div class="flex-grow-1">
                                             <h6 class="mb-1">Salena Layfield</h6>
                                             <div class="font-size-12 text-muted">
-                                                <p class="mb-1" key="t-occidental">As a skeptical Cambridge friend of
+                                                <p class="mb-1" key="t-occidental">As a skeptical Cambridge friend
+                                                    of
                                                     mine occidental.</p>
                                                 <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span
                                                         key="t-hours-ago">1 hours ago</span></p>
@@ -242,21 +277,25 @@
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="{{ Auth::user()->image ? asset('images/profile/' . Auth::user()->image) : asset('avatar.png') }}"
+                            <img class="rounded-circle header-profile-user"
+                                src="{{ Auth::user()->image ? asset('images/profile/' . Auth::user()->image) : asset('avatar.png') }}"
                                 alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->name }}</span>
+                            <span class="d-none d-xl-inline-block ms-1"
+                                key="t-henry">{{ Auth::user()->name }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bx bx-user font-size-16 align-middle me-1"></i>
+                            <a class="dropdown-item" href="{{ route('profile.edit') }}"><i
+                                    class="bx bx-user font-size-16 align-middle me-1"></i>
                                 <span key="t-profile">Profile</span></a>
 
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-                            <a class="dropdown-item text-danger" h href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="dropdown-item text-danger" h href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();"><i
                                     class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span
                                     key="t-logout">Logout</span></a>
@@ -316,66 +355,66 @@
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
-    <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
-    <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
-    <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
     <!-- apexcharts -->
-    <script src="{{asset('assets/libs/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
     <!-- dashboard init -->
-    <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
+    <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{asset('assets/js/app.js')}}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <!-- Required datatable js -->
-    <script src="{{asset('assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    
+    <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+
     <!-- Buttons examples -->
-    <script src="{{asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('assets/libs/jszip/jszip.min.js')}}"></script>
-    <script src="{{asset('assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
-    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
-    
+    <script src="{{ asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
+
     <!-- Responsive examples -->
-    <script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
-    
+    <script src="{{ asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+
     <!-- Datatable init js -->
-    <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
 
     <!-- toastr plugin -->
-    <script src="{{asset('assets/libs/toastr/build/toastr.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/toastr/build/toastr.min.js') }}"></script>
 
     <!-- toastr init -->
-    <script src="{{asset('assets/js/pages/toastr.init.js')}}"></script>
+    <script src="{{ asset('assets/js/pages/toastr.init.js') }}"></script>
 
     <!-- Sweet Alerts js -->
-    <script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
-            @if(session('success'))
+            @if (session('success'))
                 toastr.success("{{ session('success') }}");
             @endif
 
-            @if(session('error'))
+            @if (session('error'))
                 toastr.error("{{ session('error') }}");
             @endif
 
-            @if(session('warning'))
+            @if (session('warning'))
                 toastr.warning("{{ session('warning') }}");
             @endif
 
-            @if(session('info'))
+            @if (session('info'))
                 toastr.info("{{ session('info') }}");
             @endif
 

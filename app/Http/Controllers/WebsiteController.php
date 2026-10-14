@@ -42,8 +42,22 @@ class WebsiteController extends Controller
 
     public function formerSecretory()
     {
-        $secretaries = Secretary::orderBy('to', 'desc')->get();
+        $secretaries = Secretary::where('type','Principle')->orderBy('to', 'desc')->get();
         return view('website.former-secretory', get_defined_vars());
+    }
+    public function militarySecretary()
+    {
+        $secretaries = Secretary::where('type','Military')->orderBy('to', 'desc')->get();
+        return view('website.military-secretary', get_defined_vars());
+    }
+    public function officers()
+    {
+        $secretaries = Secretary::where('type','Officer')->orderBy('to', 'desc')->get();
+        return view('website.officers', get_defined_vars());
+    }
+    public function organogram()
+    {
+        return view('website.organogram');
     }
 
     public function visitors()

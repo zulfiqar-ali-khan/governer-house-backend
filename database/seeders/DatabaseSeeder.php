@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeed::class);
         $this->call(AccountSeeder::class);
         $this->call(GovernorSeeder::class);
+        $this->call(SecretarySeeder::class);
         $this->call(VisitorSeeder::class);
     }
 }

@@ -37,10 +37,14 @@ class SecretaryController extends Controller implements HasMiddleware
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'from' => 'required|date',
+            'position' => 'nullable|string|max:255',
+            'type' => 'required|in:Military,Principle,Officer',
+            'phone' => 'nullable|string|max:255',
+            'fax' => 'nullable|string|max:255',
+            'intercom' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'from' => 'nullable|date',
             'to' => 'nullable|date',
         ]);
 
@@ -66,10 +70,14 @@ class SecretaryController extends Controller implements HasMiddleware
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'description' => 'required|string',
+            'position' => 'nullable|string|max:255',
+            'type' => 'required|in:Military,Principle,Officer',
+            'phone' => 'nullable|string|max:255',
+            'fax' => 'nullable|string|max:255',
+            'intercom' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'from' => 'required|date',
+            'from' => 'nullable|date',
             'to' => 'nullable|date',
         ]);
 

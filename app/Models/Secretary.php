@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Secretary extends Model
 {
     protected $table = 'secretaries';
-    protected $fillable = ['name', 'position', 'description', 'image', 'from', 'to', 'is_present'];
+    protected $fillable = ['name', 'position', 'type', 'phone', 'fax', 'intercom', 'description', 'image', 'from', 'to', 'is_present'];
 }
