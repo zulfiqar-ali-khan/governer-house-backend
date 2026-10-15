@@ -102,7 +102,11 @@
                         Explore our newsletters to stay informed about our latest initiatives, success stories, events and opportunities.
                     </p>
                 </div>
-              
+                <div class="mt-3 mt-md-0">
+                    <a href="{{ route('news-letter') }}" class="view-all-link">
+                        View All &rarr;
+                    </a>
+                </div>
             </div>
 
             <div class="row g-4">

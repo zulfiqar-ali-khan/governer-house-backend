@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Local pe HTTP rahega, aur Server pe automatically HTTPS force hoga
+        if (! $this->app->isLocal() || str_starts_with((string) config('app.url'), 'https://')) {
+            URL::forceScheme('https');
+        }
     }
 }

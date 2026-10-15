@@ -16,6 +16,8 @@ Route::get('/governor-house-visitors', [WebsiteController::class, 'visitors'])->
 Route::get('/history', [WebsiteController::class, 'history'])->name('history');
 Route::get('/news', [WebsiteController::class, 'news'])->name('news');
 Route::get('/news-detail/{slug}', [WebsiteController::class, 'newsDetail'])->name('news-detail');
+Route::get('/news-letter', [WebsiteController::class, 'newsLetter'])->name('news-letter');
+Route::get('/news-letter-detail/{slug}', [WebsiteController::class, 'newsLetterDetail'])->name('news-letter-detail');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('/contact', [WebsiteController::class, 'contactStore'])->name('contact.store');
 
@@ -64,6 +66,5 @@ Route::middleware('auth')->group(function () {
 
 // Talk to Governor Frontend Submission
 Route::post('/talk-to-governor', [\App\Http\Controllers\TalkToGovernorController::class, 'store'])->name('talk-to-governor.store');
-Route::get('/news-letter-detail/{slug}', [\App\Http\Controllers\WebsiteController::class, 'newsLetterDetail'])->name('news-letter-detail');
 
 require __DIR__.'/auth.php';

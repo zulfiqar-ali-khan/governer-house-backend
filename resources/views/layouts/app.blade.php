@@ -390,7 +390,7 @@
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
-
+    <script src="{{ asset('assets/js/pages/dashboard-blog.init.js') }}"></script>
     <!-- toastr plugin -->
     <script src="{{ asset('assets/libs/toastr/build/toastr.min.js') }}"></script>
 

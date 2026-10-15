@@ -28,9 +28,53 @@ class WebsiteController extends Controller
         return view('website.index', get_defined_vars());
     }
 
+    public function newsLetter(Request $request)
+    {
+        $selectedMonth = $request->get('month'); // e.g. '2026-10'
+
+        // Get available months that have active newsletters with counts
+        $availableMonths = NewsLetter::where('status', 'active')
+            ->selectRaw('DATE_FORMAT(date, "%Y-%m") as month_key, DATE_FORMAT(date, "%M %Y") as month_label, count(*) as count')
+            ->groupBy('month_key', 'month_label')
+            ->orderBy('month_key', 'desc')
+            ->get();
+
+        $monthCounts = $availableMonths->pluck('count', 'month_key');
+        $totalCount = NewsLetter::where('status', 'active')->count();
+
+        $query = NewsLetter::where('status', 'active')->orderBy('date', 'desc');
+
+        if ($selectedMonth && $selectedMonth !== 'all') {
+            $query->whereRaw('DATE_FORMAT(date, "%Y-%m") = ?', [$selectedMonth]);
+        }
+
+        $allNewsletters = $query->get();
+
+        // Group newsletters by "Month Year" (e.g. "October 2026")
+        $groupedNewsletters = $allNewsletters->groupBy(function ($item) {
+            return \Carbon\Carbon::parse($item->date)->format('F Y');
+        });
+
+        $featuredNewsletter = $allNewsletters->first();
+
+        // Selected month label if filtered
+        $selectedMonthLabel = null;
+        if ($selectedMonth && $selectedMonth !== 'all') {
+            $matched = $availableMonths->firstWhere('month_key', $selectedMonth);
+            $selectedMonthLabel = $matched ? $matched->month_label : null;
+        }
+
+        return view('website.news-letter', get_defined_vars());
+    }
+
     public function newsLetterDetail($slug)
     {
         $newsletter = NewsLetter::where('slug', $slug)->firstOrFail();
+        $relatedNewsletters = NewsLetter::where('status', 'active')
+            ->where('id', '!=', $newsletter->id)
+            ->orderBy('date', 'desc')
+            ->take(3)
+            ->get();
         return view('website.news-letter-detail', get_defined_vars());
     }
 

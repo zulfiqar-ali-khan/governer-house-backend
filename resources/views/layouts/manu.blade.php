@@ -43,7 +43,10 @@
                     </li>
                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('news') }}">NEWS & EVENTS</a>
+                        <a class="nav-link {{ request()->routeIs('news') || request()->routeIs('news-detail') ? 'active' : '' }}" href="{{ route('news') }}">NEWS & EVENTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('news-letter*') ? 'active' : '' }}" href="{{ route('news-letter') }}">NEWSLETTER</a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDownloads" role="button"

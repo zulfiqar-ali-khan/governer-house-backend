@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://roadmap-aichatbot.kpitb.online https://roadmap-aichatbot.kpitb.online; img-src 'self' data:;">
+        content="@if(!app()->isLocal()) upgrade-insecure-requests; @endif default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://roadmap-aichatbot.kpitb.online https://roadmap-aichatbot.kpitb.online; img-src 'self' data:;">
     <title> GOVERNER HOUSE | HOME </title>
     <link rel="stylesheet" href="{{ asset('front_assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front_assets/css/style.css') }}">

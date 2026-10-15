@@ -1916,3 +1916,143 @@ footer {
         justify-content: center;
     }
 }
+
+/* ============================================================
+   Newsletter Month-Wise Page Styles
+   ============================================================ */
+.newsletter-filter-bar {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 51, 51, 0.05);
+    border: 1px solid rgba(0, 51, 51, 0.08);
+}
+
+.newsletter-filter-tab {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-gray);
+    background: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    transition: all 0.25s ease;
+}
+
+.newsletter-filter-tab:hover {
+    color: var(--dark-green);
+    background: #edf2f0;
+    border-color: var(--dark-green);
+    transform: translateY(-1px);
+}
+
+.newsletter-filter-tab.active {
+    background: var(--dark-green);
+    color: #ffffff;
+    border-color: var(--dark-green);
+    box-shadow: 0 4px 12px rgba(0, 51, 51, 0.2);
+}
+
+.newsletter-filter-tab .badge-count {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 6px;
+    background: #e2e8f0;
+    color: #495057;
+    transition: all 0.25s ease;
+}
+
+.newsletter-filter-tab.active .badge-count {
+    background: var(--yellow);
+    color: var(--dark-green);
+}
+
+.month-section-header {
+    border-bottom: 2px solid #e9ecef;
+}
+
+.month-header-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(0, 51, 51, 0.08);
+    color: var(--dark-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.month-section-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--dark-green);
+    letter-spacing: -0.3px;
+}
+
+.month-edition-badge {
+    background: #eef4f3;
+    color: var(--dark-green);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(0, 51, 51, 0.1);
+}
+
+.card-date-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 51, 51, 0.92);
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px 10px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    z-index: 2;
+    min-width: 48px;
+}
+
+.card-date-badge .day {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1;
+    display: block;
+    color: var(--yellow);
+}
+
+.card-date-badge .mon {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: block;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+.newsletter-card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.newsletter-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 51, 51, 0.12) !important;
+}
+
+.newsletter-card-hover .news-grid-img {
+    transition: transform 0.35s ease;
+}
+
+.newsletter-card-hover:hover .news-grid-img {
+    transform: scale(1.05);
+}
+
