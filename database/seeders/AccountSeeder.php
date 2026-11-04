@@ -17,8 +17,8 @@ class AccountSeeder extends Seeder
          //
         $user = User::create([
             "name" => "Admin",
-            'email' => "admin@admin.com",
-            'password' => bcrypt('admin@admin.com'),
+            'email' => "govehousekp@info.com",
+            'password' => bcrypt('govehousekpinfo'),
         ]);
 
         $role = \Spatie\Permission\Models\Role::where('name', 'Admin')->first();

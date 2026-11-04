@@ -41,7 +41,7 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                            @if($user->user_type !='admin')
+                            @if(!$user->roles->contains(fn($role) => strtolower($role->name) === 'admin'))
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
@@ -80,7 +80,6 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                @endif
 
                                 <!-- Edit User Modal -->
                                 <div class="modal fade" id="editUserModal{{ $user->id }}" tabindex="-1"
@@ -159,6 +158,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>

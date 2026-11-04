@@ -1,0 +1,483 @@
+:root {
+    --gh-primary: #0a4d36;
+    --gh-primary-dark: #052c1e;
+    --gh-primary-light: #0e6b4b;
+    --gh-accent: #c99738;
+    --gh-accent-light: #dfaa47;
+    --gh-emerald: #10b981;
+    --gh-dark: #0f172a;
+    --gh-slate: #475569;
+    --gh-border: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family:
+        "Plus Jakarta Sans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #041911;
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(3, 23, 16, 0.9) 0%,
+            rgba(6, 40, 28, 0.82) 50%,
+            rgba(2, 15, 10, 0.94) 100%
+        ),
+        url('../../front_assets/imgs/slide-1.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+    color: #1e293b;
+}
+
+/* Ambient Glowing Orbs */
+.ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+    animation: pulse-glow 9s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(
+        circle,
+        rgba(16, 185, 129, 0.45) 0%,
+        rgba(10, 77, 54, 0) 70%
+    );
+    top: -120px;
+    left: -120px;
+}
+
+.orb-2 {
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(
+        circle,
+        rgba(201, 151, 56, 0.3) 0%,
+        rgba(10, 77, 54, 0) 70%
+    );
+    bottom: -140px;
+    right: -120px;
+    animation-delay: -4.5s;
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.15) translate(25px, 20px);
+        opacity: 0.65;
+    }
+}
+
+/* Login Wrapper */
+.login-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 460px;
+    padding: 30px 18px;
+    margin: auto;
+    animation: fadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* Login Card */
+.login-card {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 30px 70px -15px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(201, 151, 56, 0.12),
+        0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    padding: 38px 34px 32px 34px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top Accent Line */
+.login-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0a4d36 0%, #10b981 50%, #c99738 100%);
+}
+
+/* Header & Logo */
+.card-header-area {
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+.logo-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 14px;
+}
+
+.logo-badge {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 12px 28px -6px rgba(10, 77, 54, 0.3),
+        0 0 0 3px #ffffff,
+        0 0 0 5px rgba(16, 185, 129, 0.28);
+    transition: all 0.35s ease;
+}
+
+.logo-badge:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow:
+        0 16px 32px -6px rgba(10, 77, 54, 0.4),
+        0 0 0 3px #ffffff,
+        0 0 0 6px rgba(201, 151, 56, 0.45);
+}
+
+.logo-badge img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.govt-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: rgba(10, 77, 54, 0.08);
+    border: 1px solid rgba(10, 77, 54, 0.15);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #0a4d36;
+    margin-bottom: 8px;
+}
+
+.govt-tag i {
+    color: #c99738;
+    font-size: 13px;
+}
+
+.portal-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.4px;
+}
+
+.portal-subtitle {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Form Custom Controls */
+.form-group-custom {
+    margin-bottom: 20px;
+}
+
+.form-label-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.input-box-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-prefix {
+    position: absolute;
+    left: 14px;
+    color: #94a3b8;
+    font-size: 19px;
+    pointer-events: none;
+    transition: color 0.25s ease;
+    z-index: 5;
+}
+
+.form-control-custom {
+    width: 100%;
+    height: 48px;
+    padding: 10px 16px 10px 44px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+    background-color: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    outline: none;
+}
+
+.form-control-custom::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.form-control-custom:focus {
+    background-color: #ffffff;
+    border-color: #0a734e;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.16);
+}
+
+.input-box-wrapper:focus-within .input-icon-prefix {
+    color: #0a734e;
+}
+
+/* Password Toggle Button */
+.password-toggle-btn {
+    position: absolute;
+    right: 8px;
+    height: 34px;
+    width: 36px;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.password-toggle-btn:hover {
+    color: #0a4d36;
+    background-color: #e2e8f0;
+}
+
+.password-toggle-btn i {
+    font-size: 18px;
+}
+
+/* Error message styling */
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #dc2626;
+    margin-top: 6px;
+    background: #fef2f2;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border-left: 3px solid #ef4444;
+}
+
+/* Remember Checkbox */
+.form-options-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    font-size: 13px;
+}
+
+.custom-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 0;
+}
+
+.custom-checkbox-label input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #0a4d36;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Submit Button */
+.btn-submit-custom {
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(135deg, #0a4d36 0%, #0d6849 50%, #108a5e 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 10px 22px -5px rgba(10, 77, 54, 0.42);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit-custom::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.22),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn-submit-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(10, 77, 54, 0.55);
+    background: linear-gradient(135deg, #073827 0%, #0a4d36 50%, #0e7450 100%);
+    color: #ffffff;
+}
+
+.btn-submit-custom:hover::before {
+    left: 100%;
+}
+
+.btn-submit-custom:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px -4px rgba(10, 77, 54, 0.4);
+}
+
+.btn-submit-custom i {
+    font-size: 18px;
+    transition: transform 0.25s ease;
+}
+
+.btn-submit-custom:hover i {
+    transform: translateX(4px);
+}
+
+/* Security Notice */
+.security-footer {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px dashed #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #64748b;
+    text-align: center;
+}
+
+.security-footer i {
+    color: #10b981;
+    font-size: 15px;
+}
+
+/* Copyright Notice */
+.portal-copyright {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.portal-copyright a {
+    color: #e5b352;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.portal-copyright a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 576px) {
+    .login-card {
+        padding: 30px 22px 24px 22px;
+        border-radius: 20px;
+    }
+
+    .portal-title {
+        font-size: 20px;
+    }
+
+    .logo-badge {
+        width: 76px;
+        height: 76px;
+    }
+
+    .logo-badge img {
+        width: 62px;
+        height: 62px;
+    }
+
+    .back-nav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
