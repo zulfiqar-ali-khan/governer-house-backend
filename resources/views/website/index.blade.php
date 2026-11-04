@@ -60,6 +60,12 @@
                             <h4 class="director-name">{{ $governorMessage->name }}</h4>
                             <p class="director-role">{{ $governorMessage->designation }}</p>
                         </div>
+                        <div class="director-action">
+                            <a href="{{ route('governor-profile') }}" class="btn-gov-profile-link">
+                                <span>Governor's Profile</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,7 +75,7 @@
     <!--  ./ MD Message section -->
 
     <!-- Impact section -->
-    <section class="impact-section py-5">
+    {{-- <section class="impact-section py-5">
         <div class="container text-center text-white">
             <h2 class="impact-section-title">Our Global Impact</h2>
             <div class="row g-4">
@@ -83,7 +89,7 @@
                 @endforeach
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ./ Impact section -->
     <!-- Newsletters section -->
     <section class="newsletters-section pt-5 pb-5 position-relative">
@@ -445,7 +451,6 @@
             </div>
             <div class="row g-4">
                 @if($newsAndEvents->count() > 0)
-                <!-- Left: Featured news (col-lg-7) -->
                 <div class="col-lg-7">
                     @php $featured = $newsAndEvents->first(); @endphp
                     <div class="featured-card">

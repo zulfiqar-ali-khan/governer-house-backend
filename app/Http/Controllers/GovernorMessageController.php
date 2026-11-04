@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\GovernorMessage;
 use Illuminate\Http\Request;
-
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -19,10 +18,21 @@ class GovernorMessageController extends Controller implements HasMiddleware
             new Middleware('permission:governor-message-delete', only: ['destroy']),
         ];
     }
+
     public function index()
     {
         $messages = GovernorMessage::latest()->get();
         return view('governor-messages.index', compact('messages'));
+    }
+
+    public function create()
+    {
+        return view('governor-messages.create');
+    }
+
+    public function edit(GovernorMessage $governorMessage)
+    {
+        return view('governor-messages.edit', compact('governorMessage'));
     }
 
     public function store(Request $request)
@@ -34,15 +44,63 @@ class GovernorMessageController extends Controller implements HasMiddleware
             'from' => 'nullable|date',
             'to' => 'nullable|date',
             'short_description' => 'required|string',
-            'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'political_career' => 'nullable|string',
+            'public_leadership' => 'nullable|string',
+            'education_description' => 'nullable|string',
+            'education_degree' => 'nullable|string|max:255',
+            'family_background' => 'nullable|string',
+            'born' => 'nullable|string|max:255',
+            'education' => 'nullable|string|max:255',
+            'previous_office' => 'nullable|string|max:255',
+            'also_serves_as' => 'nullable|string|max:255',
         ]);
 
-        $data = $request->except('image');
+        $data = $request->except(['image', 'ancestry', 'roles']);
+
+        // Default description if empty
+        if (empty($data['description'])) {
+            $data['description'] = $data['short_description'];
+        }
+
+        // Process Ancestry Tree (relation, name, description)
+        $ancestryTree = [];
+        if ($request->has('ancestry') && is_array($request->ancestry)) {
+            foreach ($request->ancestry as $item) {
+                $relation = trim($item['relation'] ?? '');
+                $name = trim($item['name'] ?? '');
+                $desc = trim($item['description'] ?? '');
+                if ($relation !== '' || $name !== '' || $desc !== '') {
+                    $ancestryTree[] = [
+                        'relation' => $relation,
+                        'name' => $name,
+                        'description' => $desc,
+                    ];
+                }
+            }
+        }
+        $data['ancestry_tree'] = !empty($ancestryTree) ? $ancestryTree : null;
+
+        // Process Roles of Governor (list of strings)
+        $rolesList = [];
+        if ($request->has('roles') && is_array($request->roles)) {
+            foreach ($request->roles as $role) {
+                $roleText = trim($role);
+                if ($roleText !== '') {
+                    $rolesList[] = $roleText;
+                }
+            }
+        }
+        $data['roles_of_governor'] = !empty($rolesList) ? $rolesList : null;
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('uploads/governor-messages'), $imageName);
+            $targetDir = public_path('uploads/governor-messages');
+            if (!file_exists($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            $request->image->move($targetDir, $imageName);
             $data['image'] = 'uploads/governor-messages/' . $imageName;
         }
 
@@ -55,7 +113,7 @@ class GovernorMessageController extends Controller implements HasMiddleware
             GovernorMessage::where('id', '!=', $governorMessage->id)->update(['active' => 0]);
         }
 
-        return redirect()->route('governor-messages.index')->with('success', 'Governor Message added successfully.');
+        return redirect()->route('governor-messages.index')->with('success', 'Governor Message and Profile added successfully.');
     }
 
     public function update(Request $request, GovernorMessage $governorMessage)
@@ -67,18 +125,65 @@ class GovernorMessageController extends Controller implements HasMiddleware
             'from' => 'nullable|date',
             'to' => 'nullable|date',
             'short_description' => 'required|string',
-            'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'political_career' => 'nullable|string',
+            'public_leadership' => 'nullable|string',
+            'education_description' => 'nullable|string',
+            'education_degree' => 'nullable|string|max:255',
+            'family_background' => 'nullable|string',
+            'born' => 'nullable|string|max:255',
+            'education' => 'nullable|string|max:255',
+            'previous_office' => 'nullable|string|max:255',
+            'also_serves_as' => 'nullable|string|max:255',
         ]);
 
-        $data = $request->except('image');
+        $data = $request->except(['image', 'ancestry', 'roles']);
+
+        if (empty($data['description'])) {
+            $data['description'] = $data['short_description'];
+        }
+
+        // Process Ancestry Tree
+        $ancestryTree = [];
+        if ($request->has('ancestry') && is_array($request->ancestry)) {
+            foreach ($request->ancestry as $item) {
+                $relation = trim($item['relation'] ?? '');
+                $name = trim($item['name'] ?? '');
+                $desc = trim($item['description'] ?? '');
+                if ($relation !== '' || $name !== '' || $desc !== '') {
+                    $ancestryTree[] = [
+                        'relation' => $relation,
+                        'name' => $name,
+                        'description' => $desc,
+                    ];
+                }
+            }
+        }
+        $data['ancestry_tree'] = !empty($ancestryTree) ? $ancestryTree : null;
+
+        // Process Roles of Governor
+        $rolesList = [];
+        if ($request->has('roles') && is_array($request->roles)) {
+            foreach ($request->roles as $role) {
+                $roleText = trim($role);
+                if ($roleText !== '') {
+                    $rolesList[] = $roleText;
+                }
+            }
+        }
+        $data['roles_of_governor'] = !empty($rolesList) ? $rolesList : null;
 
         if ($request->hasFile('image')) {
             if ($governorMessage->image && file_exists(public_path($governorMessage->image))) {
-                unlink(public_path($governorMessage->image));
+                @unlink(public_path($governorMessage->image));
             }
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('uploads/governor-messages'), $imageName);
+            $targetDir = public_path('uploads/governor-messages');
+            if (!file_exists($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            $request->image->move($targetDir, $imageName);
             $data['image'] = 'uploads/governor-messages/' . $imageName;
         }
 
@@ -91,13 +196,13 @@ class GovernorMessageController extends Controller implements HasMiddleware
             GovernorMessage::where('id', '!=', $governorMessage->id)->update(['active' => 0]);
         }
 
-        return redirect()->route('governor-messages.index')->with('success', 'Governor Message updated successfully.');
+        return redirect()->route('governor-messages.index')->with('success', 'Governor Message and Profile updated successfully.');
     }
 
     public function destroy(GovernorMessage $governorMessage)
     {
         if ($governorMessage->image && file_exists(public_path($governorMessage->image))) {
-            unlink(public_path($governorMessage->image));
+            @unlink(public_path($governorMessage->image));
         }
         $governorMessage->delete();
 
@@ -112,7 +217,6 @@ class GovernorMessageController extends Controller implements HasMiddleware
         $governorMessage->save();
 
         if ($isActive) {
-            // Set all others to inactive
             GovernorMessage::where('id', '!=', $governorMessage->id)->update(['active' => 0]);
         }
 

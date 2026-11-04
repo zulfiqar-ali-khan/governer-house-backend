@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
 
 Route::get('/', [WebsiteController::class, 'index'])->name('index');
+Route::get('/governor-profile', [WebsiteController::class, 'governorProfile'])->name('governor-profile');
 Route::get('/former-governor', [WebsiteController::class, 'formerGovernor'])->name('former-governor');
 Route::get('/organogram', [WebsiteController::class, 'organogram'])->name('organogram');
 Route::get('/principal-secretaries', [WebsiteController::class, 'formerSecretory'])->name('former-secretory');

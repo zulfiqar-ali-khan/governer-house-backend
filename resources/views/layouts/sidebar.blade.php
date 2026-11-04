@@ -43,14 +43,14 @@
                     </a>
                 </li>
                 @endcan
-                @can('global-impact-list')
+                {{-- @can('global-impact-list')
                 <li>
                     <a href="{{ route('global-impacts.index') }}" class="waves-effect">
                         <i class="bx bx-image"></i>
                         <span key="t-our-global-image">Our Global Image</span>
                     </a>
                 </li>
-                @endcan
+                @endcan --}}
                 @can('governor-message-list')
                 <li>
                     <a href="{{ route('governor-messages.index') }}" class="waves-effect">

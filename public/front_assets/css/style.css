@@ -2564,3 +2564,490 @@ textarea.gov-input {
     margin-top: 6px;
 }
 
+/* ============================================================
+   Governor's Message Section Action Button
+   ============================================================ */
+.director-action {
+    margin-top: 25px;
+}
+
+.btn-gov-profile-link {
+    background-color: var(--yellow) !important;
+    color: var(--dark-green) !important;
+    font-weight: 700;
+    font-size: 13.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 28px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    box-shadow: 0 4px 14px rgba(254, 203, 0, 0.25) !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none !important;
+}
+
+.btn-gov-profile-link:hover {
+    background-color: var(--dark-green) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 51, 51, 0.25) !important;
+}
+
+.btn-gov-profile-link .arrow {
+    transition: transform 0.2s ease;
+    font-size: 16px;
+}
+
+.btn-gov-profile-link:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   Governor Profile Page Styles (Full Matching Design)
+   ============================================================ */
+.gov-profile-hero {
+    background: linear-gradient(135deg, #091f17 0%, #0d281f 55%, #061610 100%);
+    padding: 55px 0 65px 0;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.gov-hero-watermark {
+    position: absolute;
+    right: 3%;
+    bottom: -10px;
+    width: 520px;
+    max-width: 45%;
+    opacity: 0.12;
+    color: #ffffff;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gov-watermark-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gov-profile-breadcrumb {
+    font-size: 12.5px;
+    margin-bottom: 26px;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.gov-breadcrumb-link {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.gov-breadcrumb-link:hover {
+    color: var(--yellow);
+    text-decoration: none;
+}
+
+.gov-breadcrumb-icon {
+    margin-right: 4px;
+}
+
+.gov-breadcrumb-sep {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.gov-breadcrumb-current {
+    color: var(--yellow);
+    font-weight: 600;
+}
+
+.gov-hero-main-row {
+    position: relative;
+    z-index: 2;
+}
+
+.gov-hero-portrait-frame {
+    width: 190px;
+    height: 235px;
+    border-radius: 8px;
+    border: 2px solid #c8a755;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    display: inline-block;
+    background-color: #0b221a;
+}
+
+.gov-hero-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
+
+.gov-hero-content {
+    max-width: 720px;
+}
+
+.gov-hero-eyebrow {
+    color: #d1b471;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.gov-hero-name {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.gov-hero-role-primary {
+    color: #e5c158;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.gov-hero-role-secondary {
+    color: #e5c158;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    opacity: 0.95;
+}
+
+.gov-hero-bio {
+    color: #c5d7ce;
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Body & Sections */
+.gov-profile-body-section {
+    background-color: #ffffff;
+    padding: 60px 0 80px 0;
+}
+
+.gov-profile-block {
+    margin-bottom: 36px;
+}
+
+.gov-ribbon-heading {
+    display: inline-flex;
+    align-items: stretch;
+    margin-bottom: 16px;
+}
+
+.gov-ribbon-accent {
+    width: 14px;
+    background: #c8a755;
+    transform: skewX(-20deg);
+    margin-right: -4px;
+    border-radius: 2px 0 0 2px;
+}
+
+.gov-ribbon-title {
+    background: #0f2b22;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 20px 7px 16px;
+    margin: 0;
+    transform: skewX(-20deg);
+    border-radius: 0 4px 4px 0;
+}
+
+.gov-ribbon-title span {
+    display: inline-block;
+    transform: skewX(20deg);
+}
+
+.gov-block-content p {
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.gov-block-lead {
+    color: #1e293b !important;
+    font-size: 14.5px !important;
+    margin-bottom: 18px !important;
+}
+
+/* Ancestry Tree Timeline */
+.gov-ancestry-tree {
+    position: relative;
+    padding-left: 28px;
+    margin-top: 18px;
+}
+
+.gov-ancestry-tree::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    bottom: 24px;
+    width: 2px;
+    background: #d4be83;
+}
+
+.gov-tree-node {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.gov-tree-bullet {
+    position: absolute;
+    left: -28px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #c8a755;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 0 1px #c8a755;
+}
+
+.gov-tree-generation {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #b89851;
+    margin-bottom: 2px;
+}
+
+.gov-tree-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.gov-tree-desc {
+    font-size: 13px;
+    color: #475569;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Role of Governor Cards */
+.gov-role-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 100%;
+    transition: all 0.2s ease;
+}
+
+.gov-role-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
+}
+
+.gov-role-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    background: #f0fdf4;
+    border: 1px solid #dcfce7;
+    color: #166534;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.gov-role-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e293b;
+    line-height: 1.45;
+}
+
+/* Sidebar At A Glance Card */
+.gov-glance-card {
+    background: #ffffff;
+    border: 1px solid #e7ebe8;
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
+    position: sticky;
+    top: 90px;
+}
+
+.gov-glance-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f2b22;
+    margin-bottom: 6px;
+}
+
+.gov-glance-accent {
+    width: 36px;
+    height: 3px;
+    background: #c8a755;
+    margin-bottom: 24px;
+    border-radius: 2px;
+}
+
+.gov-glance-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.gov-glance-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #f1f5f3;
+    color: #0f2b22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.gov-glance-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.gov-glance-val {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+}
+
+.gov-glance-divider {
+    margin: 24px 0 20px 0;
+    border: none;
+    border-top: 1px solid #eef2f0;
+    opacity: 1;
+}
+
+/* Scan to connect */
+.gov-scan-connect-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.gov-qr-code-wrapper {
+    width: 66px;
+    height: 66px;
+    padding: 4px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gov-qr-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.gov-scan-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.gov-scan-sub {
+    font-size: 11.5px;
+    color: #64748b;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.gov-social-pill-group {
+    display: flex;
+    gap: 8px;
+}
+
+.gov-social-pill-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #0f172a !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+    border: 1px solid #e2e8f0;
+}
+
+.gov-social-pill-btn:hover {
+    background: #0f2b22;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .gov-hero-watermark {
+        display: none;
+    }
+
+    .gov-hero-portrait-frame {
+        width: 160px;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+    .gov-hero-name {
+        font-size: 32px;
+    }
+
+    .gov-glance-card {
+        position: static;
+        margin-top: 30px;
+    }
+}
+
+

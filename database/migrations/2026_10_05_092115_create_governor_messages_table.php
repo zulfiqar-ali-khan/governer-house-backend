@@ -20,6 +20,17 @@ return new class extends Migration
             $table->date('to')->nullable();
             $table->text('short_description');
             $table->text('description');
+            $table->longText('political_career')->nullable();
+            $table->longText('public_leadership')->nullable();
+            $table->text('education_description')->nullable();
+            $table->string('education_degree')->nullable();
+            $table->text('family_background')->nullable();
+            $table->json('ancestry_tree')->nullable();
+            $table->json('roles_of_governor')->nullable();
+            $table->string('born')->nullable();
+            $table->string('education')->nullable();
+            $table->string('previous_office')->nullable();
+            $table->string('also_serves_as')->nullable();
             $table->string('image');
             $table->boolean('active')->default(false);
             $table->timestamps();

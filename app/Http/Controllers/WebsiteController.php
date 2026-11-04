@@ -115,6 +115,12 @@ class WebsiteController extends Controller
         return view('website.history');
     }
 
+    public function governorProfile()
+    {
+        $governorMessage = GovernorMessage::where('active', true)->first();
+        return view('website.governor-profile', compact('governorMessage'));
+    }
+
     public function news()
     {
         $newsAndEvents = NewAndEvent::orderBy('date', 'desc')->paginate(9);
