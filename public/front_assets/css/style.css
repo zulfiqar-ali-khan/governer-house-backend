@@ -798,110 +798,280 @@ footer {
     }
 }
 
-/* Talk to Governor Section Styling */
+/* ==========================================================================
+   Talk to Governor Section Styling (Updated)
+   ========================================================================== */
 .talk-to-gov-section {
-    background-color: #f7f9f8;
-    padding: 80px 0;
+    background-color: #f4f6f4;
+    padding: 70px 0;
 }
 
-.gov-img-wrapper {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+/* Left Dark Information Card */
+.gov-info-card {
+    background-color: #142820;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 44px 38px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.gov-form-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    aspect-ratio: 1/1;
-}
-
-.gov-form-container {
-    max-width: 600px;
-}
-
-.form-section-title {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--dark-green);
-    margin-bottom: 15px;
-}
-
-.form-section-subtitle {
-    font-size: 16px;
-    color: var(--text-gray);
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.gov-contact-form .form-label {
-    display: block;
+.gov-accent-label {
+    color: #d1ad5b;
     font-size: 12px;
     font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--dark-green);
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
 }
 
-.gov-contact-form .form-control {
-    background-color: #ffff !important;
-    border: 1px solid rgba(0, 0, 0, 0.09) !important;
-    border-radius: 6px !important;
-    padding: 14px 18px !important;
-    font-size: 14px !important;
-    color: var(--text-gray) !important;
-    box-shadow: none !important;
-    transition: all 0.25s ease !important;
-}
-
-.gov-contact-form .form-control:focus {
-    background-color: #ffffff !important;
-    border-color: var(--yellow) !important;
-    box-shadow: 0 0 0 3px rgba(254, 203, 0, 0.15) !important;
-}
-
-.gov-contact-form textarea.form-control {
-    resize: none;
-}
-
-.btn-submit-yellow {
-    background-color: var(--yellow) !important;
-    color: var(--dark-green) !important;
+.gov-accent-dash {
+    color: #d1ad5b;
     font-weight: 700;
+}
+
+.gov-card-title {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+}
+
+.gov-card-text {
+    color: #b3c5bc;
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+}
+
+.gov-feature-list {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
+    color: #d7e2dc;
     font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 12px 28px !important;
+    line-height: 1.7;
+}
+
+.gov-feature-list li {
+    margin-bottom: 14px;
+}
+
+.gov-feature-list li::marker {
+    color: #d1ad5b;
+}
+
+/* Right Form Wrapper */
+.gov-form-wrapper {
+    background: #ffffff;
+    border: 1px solid #e2e8e4;
+    border-radius: 10px;
+    padding: 38px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.gov-form-label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.gov-form-label .optional-tag {
+    font-weight: 400;
+    color: #6b7280;
+    font-size: 12.5px;
+}
+
+.gov-input {
+    background-color: #f7f9f7 !important;
+    border: 1px solid #e1e7e3 !important;
     border-radius: 6px !important;
-    border: none !important;
-    box-shadow: 0 4px 12px rgba(254, 203, 0, 0.2) !important;
-    transition: all 0.25s ease !important;
+    padding: 11px 15px !important;
+    font-size: 14px !important;
+    color: #1f2937 !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.gov-input:focus {
+    background-color: #ffffff !important;
+    border-color: #142820 !important;
+    box-shadow: 0 0 0 3px rgba(20, 40, 32, 0.12) !important;
+}
+
+.gov-input::placeholder {
+    color: #9ca3af !important;
+    font-size: 13.5px !important;
+}
+
+textarea.gov-input {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.gov-char-count {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* Upload Boxes */
+.gov-upload-card {
+    background-color: #f8faf8;
+    border: 1.5px dashed #cbd6cf;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    min-height: 74px;
+}
+
+.gov-upload-card:hover {
+    background-color: #f0f4f1;
+    border-color: #142820;
+}
+
+.gov-upload-card.dragover {
+    background-color: #ecf3ee;
+    border-color: #142820;
+}
+
+.gov-upload-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #142820;
+    flex-shrink: 0;
+}
+
+.gov-upload-text {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.gov-upload-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gov-upload-sub {
+    font-size: 11.5px;
+    color: #6b7280;
+}
+
+/* Consent Checkbox */
+.gov-consent-box {
+    margin-top: 10px;
+}
+
+.gov-consent-box .form-check-input {
+    width: 17px;
+    height: 17px;
+    margin-top: 3px;
+    border-color: #cbd5e1;
     cursor: pointer;
 }
 
-.btn-submit-yellow:hover {
-    background-color: var(--dark-green) !important;
+.gov-consent-box .form-check-input:checked {
+    background-color: #142820;
+    border-color: #142820;
+}
+
+.gov-consent-box label {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Footer Submit Row */
+.gov-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+    gap: 16px;
+}
+
+.gov-captcha-note {
+    font-size: 12.5px;
+    color: #6b7280;
+    font-style: italic;
+}
+
+.btn-gov-submit {
+    background-color: #142820 !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 30px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(20, 40, 32, 0.15) !important;
+    transition: all 0.25s ease !important;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.btn-gov-submit:hover {
+    background-color: #0b1914 !important;
     color: #ffffff !important;
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 51, 51, 0.2) !important;
+    box-shadow: 0 6px 16px rgba(11, 25, 20, 0.25) !important;
 }
 
 /* Responsive adjustments for talk to gov */
 @media (max-width: 991.98px) {
     .talk-to-gov-section {
-        padding: 60px 0;
+        padding: 50px 0;
     }
 
-    .form-section-title {
-        font-size: 28px;
+    .gov-info-card {
+        margin-bottom: 25px;
+        padding: 32px 24px;
     }
 
-    .gov-form-img {
-        max-width: 400px;
-        margin: 0 auto;
+    .gov-card-title {
+        font-size: 26px;
+    }
+
+    .gov-form-wrapper {
+        padding: 28px 20px;
+    }
+
+    .gov-form-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .btn-gov-submit {
+        width: 100%;
     }
 }
 
@@ -2054,5 +2224,343 @@ footer {
 
 .newsletter-card-hover:hover .news-grid-img {
     transform: scale(1.05);
+}
+
+/* ============================================================
+   Talk to Governor Admin View & Modal Styles
+   ============================================================ */
+.tg-file-badge-pdf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc2626 !important;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: #fef2f2;
+    border: 1px solid #fee2e2;
+    transition: all 0.2s ease;
+}
+
+.tg-file-badge-pdf:hover {
+    background-color: #fee2e2;
+    color: #b91c1c !important;
+}
+
+.tg-file-icon-pdf {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.tg-file-badge-img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #16a34a;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: #f0fdf4;
+    border: 1px solid #dcfce7;
+    font-weight: 700;
+    gap: 4px;
+}
+
+.tg-file-icon-img {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.tg-file-count {
+    font-size: 14px;
+}
+
+.tg-modal-content {
+    border: none !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12) !important;
+}
+
+.tg-modal-header {
+    border: none !important;
+    padding: 24px 24px 0 24px !important;
+    background: #ffffff !important;
+    align-items: flex-start !important;
+}
+
+.tg-modal-title {
+    color: #0f172a;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.tg-ref-pill {
+    background-color: #ebf3fe;
+    border: 1px solid #bfdbfe;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 50rem;
+    display: inline-block;
+    font-family: monospace;
+}
+
+.tg-modal-body {
+    padding: 16px 24px 24px 24px !important;
+    background: #ffffff !important;
+}
+
+.tg-detail-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+    margin-bottom: 16px;
+    box-shadow: none !important;
+}
+
+.tg-card-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    background-color: #f1f5f9;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tg-card-header-icon {
+    margin-right: 8px;
+    color: #1e293b;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-card-header-title {
+    font-weight: 700;
+    font-size: 15.5px;
+    color: #1e293b;
+    margin: 0;
+}
+
+.tg-card-body {
+    padding: 16px 18px;
+}
+
+.tg-field-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.tg-field-icon {
+    margin-right: 12px;
+    color: #64748b;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-field-label {
+    font-size: 11.5px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.tg-field-value {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.tg-field-link {
+    color: #2563eb !important;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.tg-field-link:hover {
+    text-decoration: underline !important;
+    color: #1d4ed8 !important;
+}
+
+.tg-field-divider {
+    margin: 0 !important;
+    border: none !important;
+    border-top: 1px solid #f1f5f9 !important;
+    opacity: 1 !important;
+}
+
+.tg-vertical-divider {
+    border-right: none;
+}
+
+@media (min-width: 768px) {
+    .tg-vertical-divider {
+        border-right: 1px solid #f1f5f9 !important;
+    }
+}
+
+.tg-cnic-badge {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50rem;
+    display: inline-block;
+}
+
+.tg-category-pill {
+    background-color: #e0edff;
+    color: #1d4ed8;
+    font-weight: 600;
+    font-size: 12.5px;
+    padding: 5px 12px;
+    border-radius: 50rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-submission-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+    padding: 8px 14px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+}
+
+.tg-submission-icon {
+    margin-right: 8px;
+    color: #64748b;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-submission-label {
+    font-weight: 500;
+    font-size: 12.5px;
+    color: #475569;
+}
+
+.tg-submission-sep {
+    margin: 0 12px;
+    color: #cbd5e1;
+}
+
+.tg-submission-val {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.tg-msg-subject-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.tg-msg-subject-val {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 2px;
+}
+
+.tg-msg-content-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.tg-msg-content-box {
+    padding: 14px 16px;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #1e293b;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+.tg-attach-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.tg-pdf-icon {
+    color: #ef4444;
+    flex-shrink: 0;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #2563eb !important;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 7px 16px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.tg-pdf-btn:hover {
+    background-color: #dbeafe;
+    color: #1d4ed8 !important;
+    text-decoration: none;
+}
+
+.tg-img-icon {
+    color: #475569;
+    flex-shrink: 0;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-thumb-card {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.tg-thumb-card:hover {
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tg-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tg-empty-attach {
+    color: #64748b;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 6px;
 }
 

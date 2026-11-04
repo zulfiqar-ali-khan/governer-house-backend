@@ -72,5 +72,7 @@
 <script src="{{ asset('front_assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('front_assets/slick-1.8.1/slick/slick.min.js') }}"></script>
 <script src="{{ asset('front_assets/js/slider.js') }}"></script>
+<script src="{{ asset('front_assets/js/talk-to-governor.js') }}"></script>
+@yield('scripts')
 
 </html>

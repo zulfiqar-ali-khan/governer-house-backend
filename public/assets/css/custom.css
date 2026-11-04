@@ -459,3 +459,335 @@
     border: 1px solid #ced4da;
     background-color: #fff;
 }
+
+/* ============================================================
+   Talk to Governor Admin View & Modal Styles
+   ============================================================ */
+.tg-file-badge-pdf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc2626 !important;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: #fef2f2;
+    border: 1px solid #fee2e2;
+    transition: all 0.2s ease;
+}
+
+.tg-file-badge-pdf:hover {
+    background-color: #fee2e2;
+    color: #b91c1c !important;
+}
+
+.tg-file-icon-pdf {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.tg-file-badge-img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #16a34a;
+    border-radius: 6px;
+    padding: 4px 8px;
+    background-color: #f0fdf4;
+    border: 1px solid #dcfce7;
+    font-weight: 700;
+    gap: 4px;
+}
+
+.tg-file-icon-img {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.tg-file-count {
+    font-size: 14px;
+}
+
+.tg-modal-content {
+    border: none !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12) !important;
+}
+
+.tg-modal-header {
+    border: none !important;
+    padding: 24px 24px 0 24px !important;
+    background: #ffffff !important;
+    align-items: flex-start !important;
+}
+
+.tg-modal-title {
+    color: #0f172a;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.tg-ref-pill {
+    background-color: #ebf3fe;
+    border: 1px solid #bfdbfe;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 50rem;
+    display: inline-block;
+    font-family: monospace;
+}
+
+.tg-modal-body {
+    padding: 16px 24px 24px 24px !important;
+    background: #ffffff !important;
+}
+
+.tg-detail-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+    margin-bottom: 16px;
+    box-shadow: none !important;
+}
+
+.tg-card-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    background-color: #f1f5f9;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tg-card-header-icon {
+    margin-right: 8px;
+    color: #1e293b;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-card-header-title {
+    font-weight: 700;
+    font-size: 15.5px;
+    color: #1e293b;
+    margin: 0;
+}
+
+.tg-card-body {
+    padding: 16px 18px;
+}
+
+.tg-field-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.tg-field-icon {
+    margin-right: 12px;
+    color: #64748b;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-field-label {
+    font-size: 11.5px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.tg-field-value {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #0f172a;
+}
+
+.tg-field-link {
+    font-size: 12.5px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.tg-field-link:hover {
+    text-decoration: underline !important;
+    color: #1d4ed8 !important;
+}
+
+.tg-field-divider {
+    margin: 0 !important;
+    border: none !important;
+    border-top: 1px solid #f1f5f9 !important;
+    opacity: 1 !important;
+}
+
+.tg-vertical-divider {
+    border-right: none;
+}
+
+@media (min-width: 768px) {
+    .tg-vertical-divider {
+        border-right: 1px solid #f1f5f9 !important;
+    }
+}
+
+.tg-cnic-badge {
+    color: #1e293b;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 50rem;
+    display: inline-block;
+}
+
+.tg-category-pill {
+    color: #1d4ed8;
+    font-weight: 500;
+    font-size: 11.5px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-submission-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+    padding: 8px 14px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+}
+
+.tg-submission-icon {
+    margin-right: 8px;
+    color: #64748b;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-submission-label {
+    font-weight: 500;
+    font-size: 12.5px;
+    color: #475569;
+}
+
+.tg-submission-sep {
+    margin: 0 12px;
+    color: #cbd5e1;
+}
+
+.tg-submission-val {
+    color: #0f172a;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.tg-msg-subject-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.tg-msg-subject-val {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #0f172a;
+    margin-top: 2px;
+}
+
+.tg-msg-content-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.tg-msg-content-box {
+    padding: 14px 16px;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #1e293b;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+.tg-attach-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.tg-pdf-icon {
+    color: #ef4444;
+    flex-shrink: 0;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #2563eb !important;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 7px 16px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.tg-pdf-btn:hover {
+    background-color: #dbeafe;
+    color: #1d4ed8 !important;
+    text-decoration: none;
+}
+
+.tg-img-icon {
+    color: #475569;
+    flex-shrink: 0;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.tg-thumb-card {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.tg-thumb-card:hover {
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tg-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tg-empty-attach {
+    color: #64748b;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 6px;
+}

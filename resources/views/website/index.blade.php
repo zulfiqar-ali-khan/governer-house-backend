@@ -217,44 +217,216 @@
     <!-- talk to governer -->
     <section class="talk-to-gov-section py-5">
         <div class="container py-lg-4">
-            <div class="row align-items-center">
-                <!-- Left: Governor Image -->
-                <div class="col-lg-5 col-md-6 mb-5 mb-md-0">
-                    <div class="gov-img-wrapper">
-                        <img src="{{ asset($governorMessage->image) }}" alt="{{ $governorMessage->name }}" class="gov-form-img">
+            <div class="row g-4 align-items-stretch">
+                <!-- Left: Information Card -->
+                <div class="col-lg-4 col-md-12 d-flex">
+                    <div class="gov-info-card w-100">
+                        <div class="gov-accent-label">
+                            <span class="gov-accent-dash">—</span> TALK TO THE GOVERNOR
+                        </div>
+                        <h2 class="gov-card-title">
+                            Write directly to the<br>Office of the Governor
+                        </h2>
+                        <p class="gov-card-text">
+                            Share your suggestions, proposals or concerns. Every submission is reviewed by the Governor's Secretariat and you receive a reference number for follow up.
+                        </p>
+                        <ul class="gov-feature-list">
+                            <li>Attach a proposal or supporting document as PDF</li>
+                            <li>Add up to three photos</li>
+                            <li>Expect an acknowledgement by email</li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- Right: Contact Form -->
-                <div class="col-lg-7 col-md-6 ps-lg-5">
-                    <div class="gov-form-container">
-                        <h2 class="form-section-title">Talk to Governor</h2>
-                        <p class="form-section-subtitle">
-                            Have a vision for innovation or a strategic proposal? Connect directly with our
-                            leadership to discuss how we can shape the future together.
-                        </p>
-
+                <div class="col-lg-8 col-md-12">
+                    <div class="gov-form-wrapper">
                         @if(session('success'))
-                            <div class="alert alert-success mt-3">
-                                {{ session('success') }}
+                            <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                                <div class="d-flex align-items-start">
+                                    <div class="me-2 mt-1">
+                                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <strong>Success!</strong> {{ session('success') }}
+                                        @if(session('reference_number'))
+                                            <div class="mt-2">
+                                                <span class="fw-semibold">Your Tracking Reference Number:</span>
+                                                <span class="badge bg-dark font-monospace text-white px-2 py-1 ms-1 font-size-13">{{ session('reference_number') }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
-                        <form action="{{ route('talk-to-governor.store') }}" method="POST" class="gov-contact-form">
+                        @if(isset($errors) && $errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                                <strong>Please check the following issues:</strong>
+                                <ul class="mb-0 mt-1 ps-3">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        <form action="{{ route('talk-to-governor.store') }}" method="POST" enctype="multipart/form-data" class="gov-main-form" id="govContactForm">
                             @csrf
-                            <div class="mb-4">
-                                <label for="govName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" name="name" id="govName" placeholder="Enter your name" required>
+
+                            <!-- Row 1: Full Name & Email Address -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="govFullName" class="gov-form-label">Full Name</label>
+                                    <input type="text" class="form-control gov-input" name="name" id="govFullName" value="{{ old('name') }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="govEmailAddress" class="gov-form-label">Email Address</label>
+                                    <input type="email" class="form-control gov-input" name="email" id="govEmailAddress" value="{{ old('email') }}" required>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="govEmail" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" name="email" id="govEmail" placeholder="Enter your email" required>
+
+                            <!-- Row 2: Mobile Number & CNIC -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="govMobileNumber" class="gov-form-label">Mobile Number</label>
+                                    <input type="text" class="form-control gov-input" name="mobile_number" id="govMobileNumber" placeholder="+92 3XX XXXXXXX" value="{{ old('mobile_number') }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="govCnic" class="gov-form-label">CNIC <span class="optional-tag">(optional)</span></label>
+                                    <input type="text" class="form-control gov-input" name="cnic" id="govCnic" placeholder="00000-0000000-0" value="{{ old('cnic') }}">
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="govMessage" class="form-label">Message</label>
-                                <textarea class="form-control" name="message" id="govMessage" rows="4" placeholder="How can we collaborate?" required></textarea>
+
+                            <!-- Row 3: District & Category -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="govDistrict" class="gov-form-label">District</label>
+                                    <select class="form-select gov-input" name="district" id="govDistrict" required>
+                                        <option value="" disabled {{ old('district') ? '' : 'selected' }}>Select district</option>
+                                        @php
+                                            $districts = [
+                                                'Abbottabad', 'Bajaur', 'Bannu', 'Batagram', 'Buner', 'Charsadda',
+                                                'Central Dir', 'Dera Ismail Khan', 'Hangu', 'Haripur', 'Karak',
+                                                'Khyber', 'Kohat', 'Kolai-Palas', 'Kurram', 'Lakki Marwat',
+                                                'Lower Chitral', 'Lower Dir', 'Lower Kohistan', 'Malakand',
+                                                'Mansehra', 'Mardan', 'Mohmand', 'North Waziristan', 'Nowshera',
+                                                'Orakzai', 'Peshawar', 'Shangla', 'South Waziristan Lower',
+                                                'South Waziristan Upper', 'Swabi', 'Swat', 'Tank', 'Torghar',
+                                                'Upper Chitral', 'Upper Dir', 'Upper Kohistan', 'Other'
+                                            ];
+                                        @endphp
+                                        @foreach($districts as $d)
+                                            <option value="{{ $d }}" {{ old('district') == $d ? 'selected' : '' }}>{{ $d }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="govCategory" class="gov-form-label">Category</label>
+                                    <select class="form-select gov-input" name="category" id="govCategory" required>
+                                        <option value="" disabled {{ old('category') ? '' : 'selected' }}>Select category</option>
+                                        @php
+                                            $categories = [
+                                                'General Suggestion / Proposal',
+                                                'Public Grievance / Complaint',
+                                                'Education & Higher Education',
+                                                'Healthcare & Medical Relief',
+                                                'Youth Affairs & Sports',
+                                                'Information Technology & Innovation',
+                                                'Infrastructure & Public Works',
+                                                'Law, Justice & Human Rights',
+                                                'Culture, Tourism & Heritage',
+                                                'Agriculture & Livestock',
+                                                'Other'
+                                            ];
+                                        @endphp
+                                        @foreach($categories as $c)
+                                            <option value="{{ $c }}" {{ old('category') == $c ? 'selected' : '' }}>{{ $c }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-submit-yellow">Submit Message</button>
+
+                            <!-- Row 4: Subject -->
+                            <div class="mb-3">
+                                <label for="govSubject" class="gov-form-label">Subject</label>
+                                <input type="text" class="form-control gov-input" name="subject" id="govSubject" value="{{ old('subject') }}" required>
+                            </div>
+
+                            <!-- Row 5: Message -->
+                            <div class="mb-3">
+                                <label for="govMessage" class="gov-form-label">Message</label>
+                                <textarea class="form-control gov-input" name="message" id="govMessage" rows="5" maxlength="2000" required>{{ old('message') }}</textarea>
+                                <div class="gov-char-count text-muted">
+                                    <span id="govCharCounter">0</span> / 2000
+                                </div>
+                            </div>
+
+                            <!-- Row 6: Attachments (PDF & Images) -->
+                            <div class="row g-3 mb-3">
+                                <!-- PDF Document Upload -->
+                                <div class="col-md-6">
+                                    <label class="gov-form-label">Attach Document <span class="optional-tag">(PDF, optional)</span></label>
+                                    <input type="file" name="document" id="govDocumentInput" accept=".pdf" class="d-none">
+                                    <div class="gov-upload-card" id="govDocUploadCard">
+                                        <div class="gov-upload-icon">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                                <polyline points="10 9 9 9 8 9"></polyline>
+                                            </svg>
+                                        </div>
+                                        <div class="gov-upload-text">
+                                            <div class="gov-upload-title" id="govDocTitle">Choose a PDF or drop it here</div>
+                                            <div class="gov-upload-sub" id="govDocSub">One file, up to 10 MB</div>
+                                        </div>
+                                        <button type="button" class="btn-close d-none font-size-11" id="govDocClear" aria-label="Clear document"></button>
+                                    </div>
+                                </div>
+
+                                <!-- Images Upload -->
+                                <div class="col-md-6">
+                                    <label class="gov-form-label">Attach Images <span class="optional-tag">(optional)</span></label>
+                                    <input type="file" name="images[]" id="govImagesInput" accept="image/jpeg,image/png,image/jpg" multiple class="d-none">
+                                    <div class="gov-upload-card" id="govImagesUploadCard">
+                                        <div class="gov-upload-icon">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                                <polyline points="21 15 16 10 5 21"></polyline>
+                                            </svg>
+                                        </div>
+                                        <div class="gov-upload-text">
+                                            <div class="gov-upload-title" id="govImagesTitle">Choose images or drop them here</div>
+                                            <div class="gov-upload-sub" id="govImagesSub">Up to 3 files, JPG or PNG, 5 MB each</div>
+                                        </div>
+                                        <button type="button" class="btn-close d-none font-size-11" id="govImagesClear" aria-label="Clear images"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row 7: Consent Checkbox -->
+                            <div class="gov-consent-box mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="consent" id="govConsentCheck" value="1" required>
+                                    <label class="form-check-label" for="govConsentCheck">
+                                        I confirm that the information provided is accurate and I consent to the Governor's Secretariat using it to process my submission.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Row 8: Footer (Captcha Info & Submit Button) -->
+                            <div class="gov-form-footer">
+                                <button type="submit" class="btn btn-gov-submit">
+                                    Submit Message
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('talk_to_governors', function (Blueprint $table) {
             $table->id();
+            $table->string('reference_number')->nullable()->unique();
             $table->string('name');
             $table->string('email');
+            $table->string('mobile_number')->nullable();
+            $table->string('cnic')->nullable();
+            $table->string('district')->nullable();
+            $table->string('category')->nullable();
+            $table->string('subject')->nullable();
             $table->text('message');
+            $table->string('document')->nullable();
+            $table->text('images')->nullable();
             $table->timestamps();
         });
     }
