@@ -12,6 +12,8 @@ use App\Models\Slider;
 use App\Models\Secretary;
 use App\Models\Governor;
 use App\Models\Visitor;
+use App\Models\Gallery;
+use App\Models\AdvisoryCouncil;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -25,6 +27,7 @@ class WebsiteController extends Controller
         $governorMessage = GovernorMessage::where('active', true)->first();
         $newsAndEvents = NewAndEvent::orderBy('date', 'desc')->take(4)->get();
         $newsLetters = NewsLetter::where('status', 'active')->orderBy('date', 'desc')->take(4)->get();
+        $advisoryCouncils = AdvisoryCouncil::where('active', true)->orderBy('order', 'asc')->get();
         return view('website.index', get_defined_vars());
     }
 
@@ -137,6 +140,22 @@ class WebsiteController extends Controller
     public function contact()
     {
         return view('website.contact');
+    }
+
+    public function gallery(Request $request)
+    {
+        $category = $request->get('category');
+        $query = Gallery::where('active', true)->orderBy('order', 'asc')->latest();
+        if ($category && $category !== 'all') {
+            $query->where('category', $category);
+        }
+        $galleries = $query->paginate(16);
+
+        $defaultCategories = ['Meetings', 'Oath Ceremonies', 'Convocations', 'Visits', 'Heritage'];
+        $dbCategories = Gallery::where('active', true)->whereNotNull('category')->pluck('category')->unique()->toArray();
+        $categories = array_values(array_unique(array_merge($defaultCategories, $dbCategories)));
+
+        return view('website.gallary', compact('galleries', 'category', 'categories'));
     }
 
     public function contactStore(Request $request)

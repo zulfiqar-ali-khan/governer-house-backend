@@ -16,6 +16,8 @@ class PermissionTableSeeder extends Seeder
             'user-list', 'user-create', 'user-edit', 'user-delete',
             'role-list', 'role-create', 'role-edit', 'role-delete',
             'slider-list', 'slider-create', 'slider-edit', 'slider-delete',
+            'gallery-list', 'gallery-create', 'gallery-edit', 'gallery-delete',
+            'advisory-council-list', 'advisory-council-create', 'advisory-council-edit', 'advisory-council-delete',
             'global-impact-list', 'global-impact-create', 'global-impact-edit', 'global-impact-delete',
             'governor-message-list', 'governor-message-create', 'governor-message-edit', 'governor-message-delete',
             'key-initiative-list', 'key-initiative-create', 'key-initiative-edit', 'key-initiative-delete',

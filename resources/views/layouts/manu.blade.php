@@ -49,6 +49,9 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('news-letter*') ? 'active' : '' }}" href="{{ route('news-letter') }}">NEWSLETTER</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}" href="{{ route('gallery') }}">GALLERY</a>
+                    </li>
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDownloads" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">

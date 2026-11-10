@@ -31,7 +31,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Image/Icon</th>
+                                <th>Label</th>
                                 <th>Heading</th>
                                 <th>Description</th>
                                 <th>Link</th>
@@ -45,9 +45,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <div style="width: 50px; height: 50px;">
-                                            {!! $initiative->icon !!}
-                                        </div>
+                                       {{ $initiative->label ?? 'N/A' }}
                                     </td>
                                     <td>{{ $initiative->heading }}</td>
                                     <td>{{ Str::limit($initiative->description, 50) }}</td>
@@ -104,11 +102,15 @@
                                                 @method('PUT')
                                                 <div class="modal-body">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Heading</label>
+                                                        <label class="form-label">Label</label>
+                                                        <input type="text" class="form-control" name="label" value="{{ old('label', $initiative->label) }}" placeholder="Enter label">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Heading <span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control" name="heading" value="{{ old('heading', $initiative->heading) }}" required>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Description</label>
+                                                        <label class="form-label">Description <span class="text-danger">*</span></label>
                                                         <textarea class="form-control" name="description" rows="3" required>{{ old('description', $initiative->description) }}</textarea>
                                                     </div>
                                                     <div class="mb-3">
@@ -118,14 +120,6 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Order</label>
                                                         <input type="number" class="form-control" name="order" value="{{ old('order', $initiative->order) }}">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Current Image/Icon</label>
-                                                        <div class="mb-2" style="width: 50px; height: 50px;">
-                                                            {!! $initiative->icon !!}
-                                                        </div>
-                                                        <label class="form-label">Update SVG Code</label>
-                                                        <textarea class="form-control" name="icon" rows="3" required>{{ old('icon', $initiative->icon) }}</textarea>
                                                     </div>
                                                     <div class="form-check form-switch mb-3">
                                                         <input class="form-check-input" type="checkbox" id="active{{ $initiative->id }}" name="active" value="1" {{ $initiative->active ? 'checked' : '' }}>
@@ -162,6 +156,10 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
+                            <label class="form-label">Label</label>
+                            <input type="text" class="form-control" name="label" value="{{ old('label') }}" placeholder="Enter label">
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Heading <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="heading" value="{{ old('heading') }}" required>
                         </div>
@@ -176,10 +174,6 @@
                         <div class="mb-3">
                             <label class="form-label">Order</label>
                             <input type="number" class="form-control" name="order" value="{{ old('order', 0) }}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Image/Icon SVG Code <span class="text-danger">*</span></label>
-                             <textarea class="form-control" name="icon" rows="3" required>{{ old('icon') }}</textarea>
                         </div>
                         <div class="form-check form-switch mb-3">
                             <input class="form-check-input" type="checkbox" id="active" name="active" value="1" checked>

@@ -43,6 +43,14 @@
                     </a>
                 </li>
                 @endcan
+                @can('gallery-list')
+                <li>
+                    <a href="{{ route('galleries.index') }}" class="waves-effect">
+                        <i class="bx bx-images"></i>
+                        <span key="t-gallery">Gallery</span>
+                    </a>
+                </li>
+                @endcan
                 {{-- @can('global-impact-list')
                 <li>
                     <a href="{{ route('global-impacts.index') }}" class="waves-effect">
@@ -64,6 +72,14 @@
                     <a href="{{ route('key-initiatives.index') }}" class="waves-effect">
                         <i class="bx bx-star"></i>
                         <span key="t-key-initiative">Key Initiative</span>
+                    </a>
+                </li>
+                @endcan
+                @can('advisory-council-list')
+                <li>
+                    <a href="{{ route('advisory-councils.index') }}" class="waves-effect">
+                        <i class="bx bx-group"></i>
+                        <span key="t-advisory-council">Advisory Council</span>
                     </a>
                 </li>
                 @endcan

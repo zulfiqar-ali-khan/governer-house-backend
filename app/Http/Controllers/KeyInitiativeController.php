@@ -28,7 +28,7 @@ class KeyInitiativeController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $request->validate([
-            'icon' => 'required',
+            'label' => 'nullable|string|max:255',
             'heading' => 'required|string|max:255',
             'description' => 'required|string',
             'order' => 'nullable|integer',
@@ -47,7 +47,7 @@ class KeyInitiativeController extends Controller implements HasMiddleware
     public function update(Request $request, KeyInitiative $keyInitiative)
     {
         $request->validate([
-            'icon' => 'required',
+            'label' => 'nullable|string|max:255',
             'heading' => 'required|string|max:255',
             'description' => 'required|string',
             'order' => 'nullable|integer',
@@ -65,9 +65,6 @@ class KeyInitiativeController extends Controller implements HasMiddleware
 
     public function destroy(KeyInitiative $keyInitiative)
     {
-        if ($keyInitiative->icon && file_exists(public_path($keyInitiative->icon))) {
-            unlink(public_path($keyInitiative->icon));
-        }
         $keyInitiative->delete();
 
         return redirect()->route('key-initiatives.index')->with('success', 'Key Initiative deleted successfully.');

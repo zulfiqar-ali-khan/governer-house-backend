@@ -10,7 +10,7 @@ class KeyInitiative extends Model
     use HasFactory;
 
     protected $fillable = [
-        'icon',
+        'label',
         'heading',
         'description',
         'order',

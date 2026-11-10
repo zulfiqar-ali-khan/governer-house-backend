@@ -19,6 +19,7 @@ Route::get('/news', [WebsiteController::class, 'news'])->name('news');
 Route::get('/news-detail/{slug}', [WebsiteController::class, 'newsDetail'])->name('news-detail');
 Route::get('/news-letter', [WebsiteController::class, 'newsLetter'])->name('news-letter');
 Route::get('/news-letter-detail/{slug}', [WebsiteController::class, 'newsLetterDetail'])->name('news-letter-detail');
+Route::get('/gallery', [WebsiteController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('/contact', [WebsiteController::class, 'contactStore'])->name('contact.store');
 
@@ -36,10 +37,18 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('sliders', \App\Http\Controllers\SliderController::class);
     Route::patch('/sliders/{slider}/toggle-active', [\App\Http\Controllers\SliderController::class, 'toggleActive'])->name('sliders.toggle-active');
+    
+    // Gallery Admin Route
+    Route::resource('galleries', \App\Http\Controllers\GalleryController::class);
+    Route::patch('/galleries/{gallery}/toggle-active', [\App\Http\Controllers\GalleryController::class, 'toggleActive'])->name('galleries.toggle-active');
     Route::resource('global-impacts', \App\Http\Controllers\GlobalImpactController::class);
     Route::patch('/global-impacts/{global_impact}/toggle-active', [\App\Http\Controllers\GlobalImpactController::class, 'toggleActive'])->name('global-impacts.toggle-active');
     Route::resource('key-initiatives', \App\Http\Controllers\KeyInitiativeController::class);
     Route::patch('/key-initiatives/{key_initiative}/toggle-active', [\App\Http\Controllers\KeyInitiativeController::class, 'toggleActive'])->name('key-initiatives.toggle-active');
+    
+    // Advisory Council Admin Route
+    Route::resource('advisory-councils', \App\Http\Controllers\AdvisoryCouncilController::class);
+    Route::patch('/advisory-councils/{advisory_council}/toggle-active', [\App\Http\Controllers\AdvisoryCouncilController::class, 'toggleActive'])->name('advisory-councils.toggle-active');
     
     // Governor Message Admin Route
     Route::resource('governor-messages', \App\Http\Controllers\GovernorMessageController::class);

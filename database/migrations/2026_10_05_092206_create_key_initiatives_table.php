@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('key_initiatives', function (Blueprint $table) {
             $table->id();
-            $table->text('icon');
+            $table->string('label')->nullable();
             $table->string('heading');
             $table->string('description');
             $table->integer('order')->default(0);
