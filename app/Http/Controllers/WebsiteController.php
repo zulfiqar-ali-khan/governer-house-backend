@@ -14,7 +14,11 @@ use App\Models\Governor;
 use App\Models\Visitor;
 use App\Models\Gallery;
 use App\Models\AdvisoryCouncil;
+use App\Mail\CitizenContactUsMail;
+use App\Mail\GovernorContactUsAdminMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class WebsiteController extends Controller
 {
@@ -161,18 +165,48 @@ class WebsiteController extends Controller
     public function contactStore(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'subject' => 'required',
-            'description' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'description' => 'required|string|max:3000',
         ]);
 
-        ContactUs::create([
+        $contactUs = ContactUs::create([
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
             'description' => $request->description,
         ]);
+
+        // Trigger 2 emails:
+        // 1. Acknowledgment email to the citizen who submitted the query
+        try {
+            $citizenEmail = config('mail.citizen_mail_override') ?: $contactUs->email;
+            if (!empty($citizenEmail)) {
+                Mail::to($citizenEmail)->send(new CitizenContactUsMail($contactUs));
+            }
+        } catch (\Throwable $e) {
+            Log::error('Contact Us Citizen Email Sending Error: ' . $e->getMessage(), [
+                'contact_id' => $contactUs->id,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        sleep(1);
+
+        // 2. Notification email to the Governor House Team
+        try {
+            $governorEmail = config('mail.governor_email', env('GOVERNOR_EMAIL'));
+            if (!empty($governorEmail)) {
+                Mail::to($governorEmail)->send(new GovernorContactUsAdminMail($contactUs));
+            }
+        } catch (\Throwable $e) {
+            Log::error('Contact Us Admin Email Sending Error: ' . $e->getMessage(), [
+                'contact_id' => $contactUs->id,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Your message has been sent successfully.');
     }
 }
