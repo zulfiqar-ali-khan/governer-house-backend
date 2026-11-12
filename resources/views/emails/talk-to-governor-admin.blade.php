@@ -195,6 +195,10 @@
 
             <!-- Body -->
             <div class="email-body">
+                <p style="font-size: 14.5px; line-height: 1.65; color: #374151; margin: 0 0 22px 0;">
+                    Dear Team, a new message has been received through the Talk to Governor portal from <strong>{{ $submission->name }}</strong> (<strong>{{ $submission->mobile_number }}</strong>, <strong>{{ $submission->district }}</strong>) under reference number <strong>{{ $submission->reference_number }}</strong> regarding <em>{{ $submission->subject }}</em>. Please review it, forward it to the concerned department for action, and update the status on the dashboard at the earliest. Full details are available in the admin panel at <a href="{{ url('/talk-to-governors') }}" style="color: #047857; text-decoration: underline; font-weight: 600;">{{ url('/talk-to-governors') }}</a>.
+                </p>
+
                 <!-- Summary bar -->
                 <div class="summary-bar">
                     <table>

@@ -48,7 +48,7 @@
                             </div>
                             <div class="contact-text">
                                 <strong>Official Email Addresses</strong>
-                                <span>info@governorhouse.kp.gov.pk<br>secretariat@governorhouse.kp.gov.pk</span>
+                                <span>governor@governor.kp.gov.pk</span>
                             </div>
                         </div>
 

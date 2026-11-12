@@ -314,6 +314,7 @@
     position: relative;
     border: none;
     padding: 0;
+    text-align: justify;
 }
 
 .director-info {
@@ -774,6 +775,48 @@ footer {
     /* Subtle micro-interaction on hover */
 }
 
+/* Footer Social Media Buttons */
+.footer-social-wrapper {
+    margin-top: 18px;
+}
+
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+
+.footer-social-btn:hover {
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+    color: #0f2b22 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(254, 203, 0, 0.35);
+}
+
+.footer-social-btn svg {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.footer-social-btn:hover svg {
+    transform: scale(1.08);
+}
+
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 25px;
@@ -800,6 +843,11 @@ footer {
         font-size: 20px;
         margin-bottom: 15px;
         text-align: center;
+    }
+
+    .footer-social-links {
+        justify-content: center;
+        margin-bottom: 25px;
     }
 
     .footer-links {
@@ -848,7 +896,7 @@ footer {
 
 .gov-card-title {
     color: #ffffff;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     line-height: 1.25;
     margin-bottom: 22px;
@@ -1140,7 +1188,7 @@ textarea.gov-input {
 }
 
 .slide-title {
-    font-size: 62px;
+    font-size: 55px;
     font-weight: 800;
     font-family: "Georgia", serif;
     line-height: 1.15;
@@ -1554,11 +1602,15 @@ textarea.gov-input {
     color: #6c757d;
     font-weight: 500;
 }
+.news-detail-img-container p{
+    text-align: justify;
+}
 .news-detail-content p {
     font-size: 16px !important;
     color: #495057 !important;
     line-height: 1.8 !important;
     margin-bottom: 0px !important;
+    text-align: justify;
 }
 .news-detail-subtitle {
     font-size: 24px;

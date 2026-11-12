@@ -110,7 +110,7 @@
                     </div>
                     <h2 class="mb-2 fw-bolder text-dark" style="font-size: 40px; letter-spacing: -0.5px;">Our Latest & <span
                             style="color: var(--yellow);">Upcoming Newsletters</span></h2>
-                    <p class="mb-0 text-start" style="font-size: 16px; color: #6c757d; max-width: 500px; line-height: 1.6;">
+                    <p class="mb-0 text-start" style="font-size: 16px; color: #6c757d; max-width: 650px; line-height: 1.6;">
                         Explore our newsletters to stay informed about our latest initiatives, success stories, events and
                         opportunities.
                     </p>
@@ -340,15 +340,15 @@
                             <div class="row g-3 mb-3">
                                 <div class="col-md-6">
                                     <label for="govMobileNumber" class="gov-form-label">Mobile Number</label>
-                                    <input type="text" class="form-control gov-input" name="mobile_number"
-                                        id="govMobileNumber" placeholder="+92 3XX XXXXXXX"
-                                        value="{{ old('mobile_number') }}" required>
+                                    <input type="text" inputmode="tel" class="form-control gov-input" name="mobile_number"
+                                        id="govMobileNumber" placeholder="0300-0000000"
+                                        value="{{ old('mobile_number') }}" maxlength="16" autocomplete="tel" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="govCnic" class="gov-form-label">CNIC <span
                                             class="optional-tag">(optional)</span></label>
-                                    <input type="text" class="form-control gov-input" name="cnic" id="govCnic"
-                                        placeholder="00000-0000000-0" value="{{ old('cnic') }}">
+                                    <input type="text" inputmode="numeric" class="form-control gov-input" name="cnic" id="govCnic"
+                                        placeholder="00000-0000000-0" value="{{ old('cnic') }}" maxlength="15" autocomplete="off">
                                 </div>
                             </div>
 

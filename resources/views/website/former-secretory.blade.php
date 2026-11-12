@@ -18,7 +18,7 @@
                         @endif
                     </div>
                     <div class="current-officer-details">
-                        <span class="current-officer-badge">CURRENT Principal Secretaries</span>
+                        <span class="current-officer-badge">CURRENT Principal Secretary</span>
                         <h2 class="current-officer-name">{{ $currentSecretary->name }}</h2>
                         <p class="current-officer-position">{{ $currentSecretary->position ?? 'Principal Secretary to Hon\'ble Governor Khyber Pakhtunkhwa' }}</p>
 

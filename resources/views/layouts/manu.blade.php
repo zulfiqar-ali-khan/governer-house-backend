@@ -23,7 +23,7 @@
                             Governors
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarGovernors">
-                            <li><a class="dropdown-item" href="{{ route('governor-profile') }}">Governor's Profile</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{ route('governor-profile') }}">Governor's Profile</a></li> --}}
                             <li><a class="dropdown-item" href="{{ route('former-governor') }}">Former Governors</a></li>
                             <li><a class="dropdown-item" href="{{ route('visitors') }}">Visitors</a></li>
                             <li><a class="dropdown-item" href="{{ route('history') }}">History</a></li>

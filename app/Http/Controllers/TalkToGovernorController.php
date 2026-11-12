@@ -101,19 +101,27 @@ class TalkToGovernorController extends Controller implements HasMiddleware
 
         // Trigger 2 emails:
         // 1. Acknowledgment email to the citizen who submitted the form
-        // 2. Notification email to the Governor / Secretariat
         try {
             $citizenEmail = config('mail.citizen_mail_override') ?: $submission->email;
             if (!empty($citizenEmail)) {
                 Mail::to($citizenEmail)->send(new CitizenTalkToGovernorMail($submission));
             }
+        } catch (\Throwable $e) {
+            Log::error('Citizen Email Sending Error: ' . $e->getMessage(), [
+                'reference_number' => $referenceNumber,
+                'error' => $e->getMessage(),
+            ]);
+        }
 
+        sleep(1);
+
+        try {
             $governorEmail = config('mail.governor_email', env('GOVERNOR_EMAIL'));
             if (!empty($governorEmail)) {
                 Mail::to($governorEmail)->send(new GovernorNewSubmissionMail($submission));
             }
         } catch (\Throwable $e) {
-            Log::error('Talk to Governor Email Sending Error: ' . $e->getMessage(), [
+            Log::error('Governor Admin Email Sending Error: ' . $e->getMessage(), [
                 'reference_number' => $referenceNumber,
                 'error' => $e->getMessage(),
             ]);

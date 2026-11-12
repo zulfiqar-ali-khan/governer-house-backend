@@ -23,7 +23,7 @@
                         @endif
                     </div>
                     <div class="current-officer-details">
-                        <span class="current-officer-badge">CURRENT Principal Secretaries</span>
+                        <span class="current-officer-badge">CURRENT Military Secretary</span>
                         <h2 class="current-officer-name">{{ $currentSecretary->name }}</h2>
                         <p class="current-officer-position">
                             {{ $currentSecretary->position ?? 'Principal Secretary to Hon\'ble Governor Khyber Pakhtunkhwa' }}
@@ -82,9 +82,9 @@
             @endif
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center">
-                    <h2 class="former-gov-title">Former Secretaries</h2>
+                    <h2 class="former-gov-title">Former Military Secretaries</h2>
                     <p class="former-gov-desc">
-                        Honoring the visionary leaders who have guided the Global Innovation Agency through decades of
+                        Honoring the visionary leaders who have guided the Governor's Secretariat through decades of
                         transformative impact. Their strategic oversight and dedication have shaped our institutional legacy
                         and global footprint.
                     </p>

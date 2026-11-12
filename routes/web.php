@@ -77,4 +77,50 @@ Route::middleware('auth')->group(function () {
 // Talk to Governor Frontend Submission
 Route::post('/talk-to-governor', [\App\Http\Controllers\TalkToGovernorController::class, 'store'])->name('talk-to-governor.store');
 
+if (app()->isLocal()) {
+    Route::get('/preview-email/citizen', function () {
+        try {
+            $submission = \App\Models\TalkToGovernor::latest()->first();
+        } catch (\Throwable $e) {
+            $submission = null;
+        }
+
+        $submission = $submission ?? new \App\Models\TalkToGovernor([
+            'reference_number' => 'GOV-261112-L2K1',
+            'name' => 'Citizen Name',
+            'email' => 'citizen@example.com',
+            'mobile_number' => '+92 300 1234567',
+            'cnic' => '17301-1234567-1',
+            'district' => 'Peshawar',
+            'category' => 'Youth Affairs & Sports',
+            'subject' => 'Improvement of Sports Facilities for Youth',
+            'message' => 'Respected Governor, I would like to bring to your kind attention the need for upgraded sports grounds and youth development centers in Peshawar.',
+        ]);
+
+        return (new \App\Mail\CitizenTalkToGovernorMail($submission))->render();
+    });
+
+    Route::get('/preview-email/governor', function () {
+        try {
+            $submission = \App\Models\TalkToGovernor::latest()->first();
+        } catch (\Throwable $e) {
+            $submission = null;
+        }
+
+        $submission = $submission ?? new \App\Models\TalkToGovernor([
+            'reference_number' => 'GOV-261112-L2K1',
+            'name' => 'Citizen Name',
+            'email' => 'citizen@example.com',
+            'mobile_number' => '+92 300 1234567',
+            'cnic' => '17301-1234567-1',
+            'district' => 'Peshawar',
+            'category' => 'Youth Affairs & Sports',
+            'subject' => 'Improvement of Sports Facilities for Youth',
+            'message' => 'Respected Governor, I would like to bring to your kind attention the need for upgraded sports grounds and youth development centers in Peshawar.',
+        ]);
+
+        return (new \App\Mail\GovernorNewSubmissionMail($submission))->render();
+    });
+}
+
 require __DIR__.'/auth.php';

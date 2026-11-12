@@ -219,5 +219,134 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // 5. Input Masking (CNIC & Mobile Number)
+    const cnicInput = document.getElementById('govCnic');
+    const mobileInput = document.getElementById('govMobileNumber');
+
+    // CNIC Formatter: XXXXX-XXXXXXX-X (13 digits -> 15 chars)
+    function formatCNIC(val) {
+        if (!val) return '';
+        const digits = val.replace(/\D/g, '').slice(0, 13);
+        if (digits.length <= 5) return digits;
+        if (digits.length <= 12) return digits.slice(0, 5) + '-' + digits.slice(5);
+        return digits.slice(0, 5) + '-' + digits.slice(5, 12) + '-' + digits.slice(12, 13);
+    }
+
+    // Mobile Number Formatter: 03XX-XXXXXXX or +92 3XX XXXXXXX
+    function formatMobile(val) {
+        if (!val) return '';
+        val = val.trim();
+        const hasPlus = val.startsWith('+');
+        let digits = val.replace(/\D/g, '');
+
+        // If starts with + or 92 (e.g. +923001234567 or 923001234567)
+        if (hasPlus || (digits.startsWith('92') && (digits.length >= 11 || val.startsWith('92')))) {
+            let clean = digits;
+            if (clean.startsWith('92')) clean = clean.slice(2);
+            clean = clean.slice(0, 10);
+            if (clean.length === 0) return '+92 ';
+            if (clean.length <= 3) return '+92 ' + clean;
+            return '+92 ' + clean.slice(0, 3) + ' ' + clean.slice(3, 10);
+        }
+
+        // Auto-prepend 0 if 10 digits entered starting with 3 (e.g. 3001234567 -> 0300-1234567)
+        if (digits.length === 10 && digits.startsWith('3')) {
+            digits = '0' + digits;
+        }
+
+        const d = digits.slice(0, 11);
+        if (d.length <= 4) return d;
+        return d.slice(0, 4) + '-' + d.slice(4, 11);
+    }
+
+    // Helper to apply masking while preserving cursor position accurately
+    function applyMaskWithCursor(input, formatter) {
+        const oldVal = input.value;
+        const oldCursor = input.selectionEnd || 0;
+
+        // Count how many significant chars (digits or +) were before cursor
+        const charsBeforeCursor = oldVal.slice(0, oldCursor).replace(/[^\d+]/g, '').length;
+
+        const newVal = formatter(oldVal);
+        input.value = newVal;
+
+        // Calculate new cursor position matching significant chars
+        let newCursor = 0;
+        let charsFound = 0;
+        for (let i = 0; i < newVal.length; i++) {
+            if (/[\d+]/.test(newVal[i])) {
+                charsFound++;
+            }
+            if (charsFound === charsBeforeCursor) {
+                newCursor = i + 1;
+                break;
+            }
+        }
+
+        if (charsBeforeCursor === 0) {
+            newCursor = 0;
+        } else if (charsFound < charsBeforeCursor) {
+            newCursor = newVal.length;
+        }
+
+        input.setSelectionRange(newCursor, newCursor);
+    }
+
+    function setupMaskedInput(input, formatter) {
+        if (!input) return;
+
+        // Initial format on load if value exists
+        if (input.value) {
+            input.value = formatter(input.value);
+        }
+
+        // Keydown handling for seamless Backspace and Delete over separators (- or space)
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Backspace' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                const start = input.selectionStart;
+                const end = input.selectionEnd;
+                if (start === end && start > 0) {
+                    const charBefore = input.value[start - 1];
+                    if (charBefore === '-' || charBefore === ' ') {
+                        e.preventDefault();
+                        const val = input.value;
+                        // Remove separator AND the digit before it
+                        input.value = val.slice(0, Math.max(0, start - 2)) + val.slice(start);
+                        const newPos = Math.max(0, start - 2);
+                        input.setSelectionRange(newPos, newPos);
+                        input.dispatchEvent(new Event('input'));
+                    }
+                }
+            } else if (e.key === 'Delete' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                const start = input.selectionStart;
+                const end = input.selectionEnd;
+                if (start === end && start < input.value.length) {
+                    const charAfter = input.value[start];
+                    if (charAfter === '-' || charAfter === ' ') {
+                        e.preventDefault();
+                        const val = input.value;
+                        // Remove separator AND the digit after it
+                        input.value = val.slice(0, start) + val.slice(start + 2);
+                        input.setSelectionRange(start, start);
+                        input.dispatchEvent(new Event('input'));
+                    }
+                }
+            }
+        });
+
+        // Input event (handles typing, pasting, mobile virtual keypad, autofill)
+        input.addEventListener('input', function () {
+            applyMaskWithCursor(input, formatter);
+        });
+
+        // Blur event (final cleanup)
+        input.addEventListener('blur', function () {
+            input.value = formatter(input.value);
+        });
+    }
+
+    setupMaskedInput(cnicInput, formatCNIC);
+    setupMaskedInput(mobileInput, formatMobile);
 });
 

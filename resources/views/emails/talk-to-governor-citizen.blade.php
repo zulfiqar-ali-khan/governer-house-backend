@@ -177,15 +177,14 @@
                 <div class="greeting">Dear {{ $submission->name }},</div>
 
                 <p class="intro-text">
-                    Thank you for reaching out directly to the Office of the Governor, Khyber Pakhtunkhwa.
-                    Your submission has been officially received by the Governor's Secretariat and assigned the following tracking reference number:
+                    Thank you for reaching out through the <strong>Talk to Governor</strong> portal. Your message has been received under reference number <strong>{{ $submission->reference_number }}</strong> and will be reviewed by the Governor's Secretariat. It will be forwarded to the relevant office for necessary action, and you will be kept informed of the progress. Please keep your reference number for any follow up.
                 </p>
 
                 <!-- Tracking Box -->
                 <div class="reference-card">
                     <div class="ref-label">Your Tracking Reference Number</div>
                     <div class="ref-number">{{ $submission->reference_number }}</div>
-                    <div class="ref-note">Please quote this reference number in any future follow-up or correspondence.</div>
+                    <div class="ref-note">Please keep your reference number for any follow up.</div>
                 </div>
 
                 <!-- Submission Details -->
@@ -247,7 +246,7 @@
                 <div class="message-box">{{ $submission->message }}</div>
 
                 <div class="info-notice">
-                    <strong>Next Steps:</strong> Every submission is cataloged and reviewed by the Governor's Secretariat. If further information or an official response is required, the Secretariat will contact you via your provided email address or phone number.
+                    <strong>Notice:</strong> This is an automated message, so please do not reply. Please keep your reference number (<strong>{{ $submission->reference_number }}</strong>) for any follow up.
                 </div>
             </div>
 
