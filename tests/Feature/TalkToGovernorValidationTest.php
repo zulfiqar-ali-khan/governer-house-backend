@@ -154,9 +154,10 @@ class TalkToGovernorValidationTest extends TestCase
         $response->assertSessionHas('success');
         $response->assertSessionHas('reference_number');
 
-        // 1. Assert Citizen Email was sent to ahmad@example.com
+        // 1. Assert Citizen Email was sent
         Mail::assertSent(CitizenTalkToGovernorMail::class, function ($mail) {
-            return $mail->hasTo('ahmad@example.com') &&
+            $expectedCitizen = config('mail.citizen_mail_override') ?: 'ahmad@example.com';
+            return $mail->hasTo($expectedCitizen) &&
                    $mail->submission->name === 'Ahmad Khan';
         });
 

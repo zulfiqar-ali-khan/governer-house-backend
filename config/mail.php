@@ -47,6 +47,7 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+            'verify_peer' => env('MAIL_VERIFY_PEER', false),
         ],
 
         'ses' => [
@@ -125,6 +126,6 @@ return [
     |
     */
 
-    'governor_email' => env('GOVERNOR_EMAIL', '_mainaccount@governor.kp.gov.pk'),
+    'governor_email' => env('GOVERNOR_EMAIL', 'secretariat@governorhouse.kp.gov.pk'),
 
 ];

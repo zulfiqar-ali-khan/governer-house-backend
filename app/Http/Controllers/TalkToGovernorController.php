@@ -103,11 +103,12 @@ class TalkToGovernorController extends Controller implements HasMiddleware
         // 1. Acknowledgment email to the citizen who submitted the form
         // 2. Notification email to the Governor / Secretariat
         try {
-            if (!empty($submission->email)) {
-                Mail::to($submission->email)->send(new CitizenTalkToGovernorMail($submission));
+            $citizenEmail = config('mail.citizen_mail_override') ?: $submission->email;
+            if (!empty($citizenEmail)) {
+                Mail::to($citizenEmail)->send(new CitizenTalkToGovernorMail($submission));
             }
 
-            $governorEmail = config('mail.governor_email', env('GOVERNOR_EMAIL', 'secretariat@governorhouse.kp.gov.pk'));
+            $governorEmail = config('mail.governor_email', env('GOVERNOR_EMAIL'));
             if (!empty($governorEmail)) {
                 Mail::to($governorEmail)->send(new GovernorNewSubmissionMail($submission));
             }
