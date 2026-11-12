@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CitizenTalkToGovernorMail;
+use App\Mail\GovernorNewSubmissionMail;
 use App\Models\TalkToGovernor;
+use App\Rules\ReCaptcha;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -41,7 +46,9 @@ class TalkToGovernorController extends Controller implements HasMiddleware
             'images' => 'nullable|array|max:3',
             'images.*' => 'image|mimes:jpeg,png,jpg|max:5120', // Max 5MB each
             'consent' => 'accepted',
+            'g-recaptcha-response' => ['required', new ReCaptcha],
         ], [
+            'g-recaptcha-response.required' => 'Please complete the reCAPTCHA verification.',
             'consent.accepted' => 'Please confirm that the information provided is accurate and consent to its processing.',
             'document.max' => 'The PDF document size must not exceed 10 MB.',
             'images.max' => 'You can attach up to 3 images only.',
@@ -78,7 +85,7 @@ class TalkToGovernorController extends Controller implements HasMiddleware
             }
         }
 
-        TalkToGovernor::create([
+        $submission = TalkToGovernor::create([
             'reference_number' => $referenceNumber,
             'name' => $request->name,
             'email' => $request->email,
@@ -91,6 +98,25 @@ class TalkToGovernorController extends Controller implements HasMiddleware
             'document' => $documentPath,
             'images' => !empty($imagePaths) ? $imagePaths : null,
         ]);
+
+        // Trigger 2 emails:
+        // 1. Acknowledgment email to the citizen who submitted the form
+        // 2. Notification email to the Governor / Secretariat
+        try {
+            if (!empty($submission->email)) {
+                Mail::to($submission->email)->send(new CitizenTalkToGovernorMail($submission));
+            }
+
+            $governorEmail = config('mail.governor_email', env('GOVERNOR_EMAIL', 'secretariat@governorhouse.kp.gov.pk'));
+            if (!empty($governorEmail)) {
+                Mail::to($governorEmail)->send(new GovernorNewSubmissionMail($submission));
+            }
+        } catch (\Throwable $e) {
+            Log::error('Talk to Governor Email Sending Error: ' . $e->getMessage(), [
+                'reference_number' => $referenceNumber,
+                'error' => $e->getMessage(),
+            ]);
+        }
 
         return redirect()->back()
             ->with('success', 'Your message has been submitted successfully! Your tracking Reference Number is ' . $referenceNumber . '.')

@@ -1017,6 +1017,31 @@ textarea.gov-input {
 }
 
 /* Footer Submit Row */
+.gov-recaptcha-section {
+    display: block;
+    margin-top: 15px;
+}
+
+.gov-recaptcha-wrapper {
+    display: inline-block;
+    min-height: 78px;
+    max-width: 100%;
+}
+
+@media (max-width: 480px) {
+    .gov-recaptcha-wrapper {
+        transform: scale(0.9);
+        transform-origin: 0 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .gov-recaptcha-wrapper {
+        transform: scale(0.82);
+        transform-origin: 0 0;
+    }
+}
+
 .gov-form-footer {
     display: flex;
     justify-content: space-between;
@@ -1270,7 +1295,7 @@ textarea.gov-input {
 /* News Page Specific Styles */
 .news-hero-section {
     background-color: var(--dark-green);
-    background-image: url('../imgs/banner-2.png');
+    background-image: url('../imgs/bg.png');
     background-size: cover;
     background-position: center;
     padding: 120px 0;
@@ -1283,7 +1308,7 @@ textarea.gov-input {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 51, 51, 0.85);
+    background-color: rgba(0, 51, 51, 0.55);
     z-index: 1;
 }
 .news-hero-title {
@@ -3207,62 +3232,121 @@ textarea.gov-input {
 }
 
 .gallery-modal-dialog {
-    max-width: 900px;
+    max-width: 960px;
+    margin: 1.75rem auto;
 }
 
 .gallery-modal-content {
-    background-color: #0f172a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    background-color: #071914;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
     overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
 }
 
-.gallery-modal-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 16px 20px;
+.gallery-modal-floating-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 20;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 0;
 }
 
-.gallery-modal-title {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.gallery-modal-close {
-    filter: invert(1);
-    opacity: 0.8;
-}
-
-.gallery-modal-close:hover {
-    opacity: 1;
+.gallery-modal-floating-close:hover {
+    background-color: var(--yellow, #FECB00);
+    color: #003333;
+    border-color: var(--yellow, #FECB00);
+    transform: scale(1.08);
 }
 
 .gallery-modal-body {
     padding: 0;
     text-align: center;
-    background-color: #000000;
+    background-color: #050d0a;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    overflow: hidden;
 }
 
 .gallery-modal-img {
     max-width: 100%;
-    max-height: 75vh;
+    max-height: 82vh;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.4s ease;
+}
+
+.gallery-modal-hover-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 50px 24px 22px;
+    background: linear-gradient(to top, rgba(4, 15, 12, 0.95) 0%, rgba(4, 15, 12, 0.75) 60%, transparent 100%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-align: left;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.gallery-modal-content:hover .gallery-modal-hover-overlay,
+.gallery-modal-body:hover .gallery-modal-hover-overlay,
+.gallery-modal-content.show-overlay .gallery-modal-hover-overlay {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.gallery-modal-hover-meta {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #b89758;
+    margin-bottom: 4px;
     display: inline-block;
 }
 
-.gallery-modal-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 16px 20px;
-    color: #cbd5e1;
-    text-align: left;
+.gallery-modal-hover-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.35;
 }
 
-.gallery-modal-desc {
-    font-size: 14px;
+.gallery-modal-hover-desc {
     color: #cbd5e1;
+    font-size: 14px;
+    line-height: 1.55;
     margin-bottom: 0;
-    line-height: 1.5;
+    max-width: 800px;
 }
 
 .gallery-empty-state {
@@ -3513,7 +3597,7 @@ textarea.gov-input {
 
 .advisory-council-title {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 800;
     color: #0f2b22;
     line-height: 1.15;
     margin-bottom: 12px;
@@ -3640,6 +3724,51 @@ textarea.gov-input {
         height: 46px;
     }
 }
+
+/* Contact Page Governor House KP Enhancements */
+.contact-timings-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    margin-bottom: 24px;
+}
+
+.contact-timings-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark-green);
+    margin-bottom: 12px;
+}
+
+.contact-timing-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    color: var(--text-gray);
+    margin-bottom: 6px;
+}
+
+.contact-timing-row strong {
+    color: var(--dark-green);
+}
+
+.contact-ttg-notice {
+    background-color: #f1f7f5;
+    border-left: 4px solid var(--dark-green);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    color: #1e3a34;
+}
+
+.contact-ttg-notice a {
+    color: var(--dark-green);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 
 
 

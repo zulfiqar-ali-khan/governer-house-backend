@@ -183,5 +183,41 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // 4. reCAPTCHA Client-side Validation & Callbacks
+    window.govRecaptchaSuccessCallback = function () {
+        const err = document.getElementById('govRecaptchaClientError');
+        if (err) err.classList.add('d-none');
+    };
+
+    window.govRecaptchaExpiredCallback = function () {
+        const err = document.getElementById('govRecaptchaClientError');
+        if (err) {
+            err.textContent = 'reCAPTCHA verification expired. Please check the box again.';
+            err.classList.remove('d-none');
+        }
+    };
+
+    const govForm = document.getElementById('govContactForm');
+    if (govForm) {
+        govForm.addEventListener('submit', function (e) {
+            if (typeof grecaptcha !== 'undefined') {
+                const response = grecaptcha.getResponse();
+                if (!response || response.trim().length === 0) {
+                    e.preventDefault();
+                    const err = document.getElementById('govRecaptchaClientError');
+                    if (err) {
+                        err.textContent = 'Please complete the reCAPTCHA verification.';
+                        err.classList.remove('d-none');
+                    }
+                    const recaptchaEl = document.querySelector('.gov-recaptcha-section');
+                    if (recaptchaEl && typeof recaptchaEl.scrollIntoView === 'function') {
+                        recaptchaEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return false;
+                }
+            }
+        });
+    }
 });
 

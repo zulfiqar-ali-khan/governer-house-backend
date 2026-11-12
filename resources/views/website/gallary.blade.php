@@ -59,16 +59,17 @@
                         aria-labelledby="galleryModalLabel{{ $gallery->id }}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered gallery-modal-dialog">
                             <div class="modal-content gallery-modal-content">
-                                <div class="modal-header gallery-modal-header">
-                                    <div>
-                                        <span class="gov-engagement-meta mb-1">{{ strtoupper($gallery->category ?? 'GALLERY') }}</span>
-                                        <h5 class="modal-title gallery-modal-title" id="galleryModalLabel{{ $gallery->id }}">
-                                            {{ $gallery->title }}
-                                        </h5>
-                                    </div>
-                                    <button type="button" class="btn-close gallery-modal-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
+                                <!-- Floating Close Button -->
+                                <button type="button" class="gallery-modal-floating-close" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+
                                 <div class="modal-body gallery-modal-body">
                                     @if ($gallery->image && file_exists(public_path($gallery->image)))
                                         <img src="{{ asset($gallery->image) }}" alt="{{ $gallery->title }}"
@@ -84,12 +85,18 @@
                                             <p class="mt-3 text-light">Photo placeholder</p>
                                         </div>
                                     @endif
-                                </div>
-                                @if ($gallery->description)
-                                    <div class="modal-footer gallery-modal-footer">
-                                        <p class="gallery-modal-desc">{{ $gallery->description }}</p>
+
+                                    <!-- Hover Caption: Hidden by default, reveals on hover -->
+                                    <div class="gallery-modal-hover-overlay">
+                                        <span class="gallery-modal-hover-meta">{{ strtoupper($gallery->category ?? 'GALLERY') }}</span>
+                                        <h4 class="gallery-modal-hover-title" id="galleryModalLabel{{ $gallery->id }}">
+                                            {{ $gallery->title }}
+                                        </h4>
+                                        @if ($gallery->description)
+                                            <p class="gallery-modal-hover-desc">{{ $gallery->description }}</p>
+                                        @endif
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -147,6 +154,18 @@
                     }
                 });
             }
+
+            // Click/tap toggle for lightbox modal overlay (especially for mobile/touch)
+            document.querySelectorAll('.gallery-modal-body').forEach(body => {
+                body.addEventListener('click', function(e) {
+                    if (!e.target.closest('.gallery-modal-floating-close')) {
+                        const content = this.closest('.gallery-modal-content');
+                        if (content) {
+                            content.classList.toggle('show-overlay');
+                        }
+                    }
+                });
+            });
         });
     </script>
 @endsection

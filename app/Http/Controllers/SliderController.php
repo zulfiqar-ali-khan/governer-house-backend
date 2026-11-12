@@ -28,11 +28,15 @@ class SliderController extends Controller implements HasMiddleware
 
     public function store(Request $request)
     {
+        if ($request->file('image') && !$request->file('image')->isValid()) {
+            return redirect()->back()->withInput()->with('error', 'Image upload failed: ' . $request->file('image')->getErrorMessage());
+        }
+
         $request->validate([
             'title' => 'nullable|string|max:255',
             'label' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
             'order' => 'nullable|integer',
             'active' => 'nullable|boolean',
         ]);
@@ -55,11 +59,15 @@ class SliderController extends Controller implements HasMiddleware
 
     public function update(Request $request, Slider $slider)
     {
+        if ($request->file('image') && !$request->file('image')->isValid()) {
+            return redirect()->back()->withInput()->with('error', 'Image upload failed: ' . $request->file('image')->getErrorMessage());
+        }
+
         $request->validate([
             'title' => 'nullable|string|max:255',
             'label' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
             'order' => 'nullable|integer',
             'active' => 'nullable|boolean',
         ]);
@@ -67,8 +75,8 @@ class SliderController extends Controller implements HasMiddleware
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            if($slider->image && file_exists(public_path($slider->image))) {
-                unlink(public_path($slider->image));
+            if ($slider->image && file_exists(public_path($slider->image))) {
+                @unlink(public_path($slider->image));
             }
             $imageName = time().'.'.$request->image->extension();  
             $request->image->move(public_path('uploads/sliders'), $imageName);

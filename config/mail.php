@@ -115,4 +115,16 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Governor / Secretariat Notification Email
+    |--------------------------------------------------------------------------
+    |
+    | Default email address where citizen submissions to the Governor
+    | are routed.
+    |
+    */
+
+    'governor_email' => env('GOVERNOR_EMAIL', '_mainaccount@governor.kp.gov.pk'),
+
 ];

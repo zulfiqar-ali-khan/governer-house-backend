@@ -38,7 +38,7 @@
                         </thead>
                         <tbody>
                             @foreach ($roles as $role)
-                                @if ($role->name != 'ADMIN')
+                                @if ($role->name != 'Admin')
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $role->name }}</td>

@@ -253,7 +253,7 @@
     <!-- ./ Initiatives section -->
 
     <!-- talk to governer -->
-    <section class="talk-to-gov-section py-5">
+    <section class="talk-to-gov-section py-5" id="talk-to-governor">
         <div class="container py-lg-4">
             <div class="row g-4 align-items-stretch">
                 <!-- Left: Information Card -->
@@ -524,7 +524,18 @@
                                 </div>
                             </div>
 
-                            <!-- Row 8: Footer (Captcha Info & Submit Button) -->
+                            <!-- Row 8: reCAPTCHA Verification -->
+                            <div class="gov-recaptcha-section mb-4">
+                                <div class="gov-recaptcha-wrapper">
+                                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" data-callback="govRecaptchaSuccessCallback" data-expired-callback="govRecaptchaExpiredCallback"></div>
+                                </div>
+                                @if (isset($errors) && $errors->has('g-recaptcha-response'))
+                                    <div class="text-danger mt-2 font-size-13 fw-semibold">{{ $errors->first('g-recaptcha-response') }}</div>
+                                @endif
+                                <div id="govRecaptchaClientError" class="text-danger mt-2 font-size-13 fw-semibold d-none">Please complete the reCAPTCHA verification.</div>
+                            </div>
+
+                            <!-- Row 9: Footer (Submit Button) -->
                             <div class="gov-form-footer">
                                 <button type="submit" class="btn btn-gov-submit">
                                     Submit Message
@@ -687,4 +698,8 @@
     <!-- ./ Governor's Advisory Council Section -->
 
 
+@endsection
+
+@section('scripts')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @endsection
